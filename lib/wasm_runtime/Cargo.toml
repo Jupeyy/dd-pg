@@ -1,0 +1,12 @@
+[package]
+name = "wasm_runtime"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+graphics-types = { path = "../graphics-types" }
+graphics-traits = { path = "../graphics-traits" }
+graphics = { path = "../graphics" }
+anyhow = "1.0.71"
+wasmer = { version = "3.1.1", features = ["core", "tracing"] }
+bincode = "2.0.0-rc.3"

@@ -1,0 +1,8 @@
+[package]
+name = "native"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sdl2 = { version = "0.35.2", features = ["bundled"] }
+egui = { version = "0.21.0", features = ["serde"] }

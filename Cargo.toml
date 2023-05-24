@@ -1,0 +1,76 @@
+[workspace]
+members = [
+    "lib/wasm_runtime",
+    "lib/native",
+    "lib/network",
+    "lib/base",
+    "lib/graphics-base",
+    "lib/graphics",
+    "lib/graphics-types",
+    "lib/graphics-traits",
+    "lib/api",
+    "examples/wasm-modules/ui",
+]
+
+[package]
+name = "ddnet-playground"
+description = "DDraceNetwork, a free cooperative platformer game"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "Zlib"
+build = "build.rs"
+
+[dependencies]
+wasm_runtime = { path = "lib/wasm_runtime" }
+native = { path = "lib/native" }
+network = { path = "lib/network" }
+math = { path = "lib/math" }
+base = { path = "lib/base" }
+graphics-base = { path = "lib/graphics-base" }
+graphics = { path = "lib/graphics" }
+graphics-types = { path = "lib/graphics-types" }
+graphics-traits = { path = "lib/graphics-traits" }
+libc = "0.2.144"
+sdl2 = { version = "0.35.2", features = ["bundled"] }
+flate2 = "1.0.26"
+quinn = "0.10.1"
+rustls = "0.21.1"
+rcgen = "0.10.0"
+tokio = { version = "1.28.1", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+num = "0.4.0"
+png = "0.17.8"
+arrayvec = "0.7.2"
+ash = "0.37.2"
+num-traits = "0.2.15"
+num-derive = "0.3.3"
+egui = { version = "0.21.0", features = ["serde"] }
+rayon = "1.7.0"
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+bytes = "1.4.0"
+egui_extras = "0.21.0"
+emath = "0.21.0"
+fixed = "1.23.0"
+serde = "1.0.163"
+serde-value = "0.7.0"
+tokio-tungstenite = "0.19.0"
+anyhow = "1.0.69"
+thiserror = "1.0.39"
+async-trait = "0.1.66"
+bitflags = "2.0.1"
+serde_json = "1.0.94"
+wasmer = "3.1.1"
+
+[profile.release]
+lto = true
+opt-level = 3
+
+[package.metadata.bundle]
+short_description = "DDraceNetwork, a free cooperative platformer game"
+long_description = """
+DDraceNetwork (DDNet) is an actively maintained version of DDRace, a Teeworlds modification with a unique cooperative gameplay.
+Help each other play through custom maps, compete against the best in international tournaments, design your own maps, or run your own server.
+The official servers are around the world.
+All ranks made on official servers are available worldwide and you can collect points!
+"""
+

@@ -1,0 +1,16 @@
+{
+  "cl_background_show_tile_layers": true,
+  "cl_overlay_entities": 0,
+  "ui_path": {
+    "name": "",
+    "query": {}
+  },
+  "gfx_no_clip": false,
+  "gfx_high_detail": true,
+  "gfx_window_width": 800,
+  "gfx_window_height": 600,
+  "gfx_window_fullscreen_mode": 0,
+  "gfx_thread_count": 1,
+  "dbg_gfx": "DEBUG_GFX_MODE_NONE",
+  "dbg_bench": true
+}
