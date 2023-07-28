@@ -1,0 +1,13 @@
+[package]
+name = "graphics-types"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+math = { path = "../math" }
+pool = { path = "../pool" }
+num-derive = "0.3.3"
+num-traits = "0.2.15"
+bitflags = "2.3.2"
+bincode = "2.0.0-rc.3"

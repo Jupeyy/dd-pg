@@ -1,0 +1,14 @@
+[package]
+name = "wasm-logic-graphics"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+graphics-types = { path = "../graphics-types" }
+graphics-traits = { path = "../graphics-traits" }
+graphics = { path = "../graphics" }
+wasm-runtime-types = { path = "../wasm-runtime-types" }
+anyhow = "1.0.71"
+wasmer = { version = "4.0.0", features = ["core", "tracing"] }
+bincode = "2.0.0-rc.3"

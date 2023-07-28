@@ -1,0 +1,25 @@
+[package]
+name = "shared-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+base = { path = "../../lib/base" }
+graphics-types = { path = "../../lib/graphics-types" }
+pool = { path = "../../lib/pool" }
+api-wasm-macros = { path = "../../lib/api-wasm-macros" }
+rayon = "1.7.0"
+arrayvec = { version = "0.7.4", features = ["serde"] }
+num = "0.4.0"
+num-derive = "0.3.3"
+num-traits = "0.2.15"
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+flate2 = "1.0.26"
+anyhow = "1.0.69"
+async-trait = "0.1.68"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+serde = "1.0.164"
+indexmap = "2.0.0"
+thiserror = "1.0.40"
+tinyvec = { version = "1.6.0", features = ["serde"] }

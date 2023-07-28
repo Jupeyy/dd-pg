@@ -1,0 +1,12 @@
+[package]
+name = "av-encoder"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+matroska = { git = "https://github.com/rust-av/matroska" }
+rav1e = { version = "0.6.6", default-features = false, features = ["threading"] }
+threadpool = "1.8.1"
+av-data = "0.4.1"
+av-format = "0.7"

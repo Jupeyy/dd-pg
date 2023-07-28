@@ -1,0 +1,12 @@
+[package]
+name = "sound"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../math" }
+base = { path = "../base" }
+base-fs = { path = "../base-fs" }
+hashlink = "0.8.3"
+kira = "0.8.4"
+mint = "0.5.9"

@@ -1,0 +1,13 @@
+[package]
+name = "native"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+anyhow = "1.0.71"
+hashlink = "0.8.3"
+num-derive = "0.4.0"
+num-traits = "0.2.15"
+winit = { git = "https://github.com/Jupeyy/winit/", branch = "pr_ord_keycode" }
+signal-hook = "0.3.15"

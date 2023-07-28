@@ -1,0 +1,17 @@
+[package]
+name = "base-fs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+serde = { version = "1.0.163", features = ["derive"] }
+anyhow = "1.0.71"
+arrayvec = "0.7.4"
+# v5.0.1+ brings a MPL 2.0 dependency
+directories = { version = "=5.0.0" }
+# v4.0.1+ brings a MPL 2.0 dependency
+dirs-sys = { version = "=0.4.0" }
+tokio = { version = "1.28.2", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+notify = "6.0.1"
+hashlink = { version = "0.8.3", features = ["serde"] }

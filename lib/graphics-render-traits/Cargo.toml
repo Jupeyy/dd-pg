@@ -1,0 +1,9 @@
+[package]
+name = "graphics-render-traits"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+graphics-types = { path = "../graphics-types" }
+graphics-traits = { path = "../graphics-traits" }
+graphics-base = { path = "../graphics-base" }
