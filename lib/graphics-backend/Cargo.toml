@@ -1,0 +1,31 @@
+[package]
+name = "graphics-backend"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+base = { path = "../base" }
+base-fs = { path = "../base-fs" }
+base-log = { path = "../base-log" }
+config = { path = "../config" }
+native = { path = "../native" }
+graphics = { path = "../graphics" }
+graphics-types = { path = "../graphics-types" }
+graphics-base-traits = { path = "../graphics-base-traits" }
+graphics-backend-traits = { path = "../graphics-backend-traits" }
+math = { path = "../math" }
+libc = "0.2.147"
+naga = { git = "https://github.com/gfx-rs/naga", commit = "907b7c7cda2447f2869820a27b8f331d7c512fab", features = ["glsl-in", "spv-out"] }
+ash-window = "0.12.0"
+#naga = { path = "/home/jupeyy/Dokumente/dev/naga/", features = ["glsl-in", "spv-out"] }
+winit = { git = "https://github.com/Jupeyy/winit/", branch = "pr_ord_keycode" }
+anyhow = "1.0.75"
+rayon = "1.7.0"
+arrayvec = "0.7.4"
+ash = "0.37.3"
+num-derive = "0.4.0"
+num-traits = "0.2.16"
+thiserror = "1.0.47"
+raw-window-handle = "0.5.2"

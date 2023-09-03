@@ -1,0 +1,20 @@
+[package]
+name = "base-fs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+base-fs-traits = { path = "../base-fs-traits" }
+base-log = { path = "../base-log" }
+serde = { version = "1.0.187", features = ["derive"] }
+anyhow = "1.0.75"
+arrayvec = "0.7.4"
+# v5.0.1+ brings a MPL 2.0 dependency
+directories = { version = "=5.0.0" }
+# v4.0.1+ brings a MPL 2.0 dependency
+dirs-sys = { version = "=0.4.0" }
+tokio = { version = "1.32.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+notify = "6.1.1"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+async-trait = "0.1.73"

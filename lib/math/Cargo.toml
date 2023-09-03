@@ -1,0 +1,10 @@
+[package]
+name = "math"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde = { version = "1.0.187", features = ["derive"] }
+bincode = "2.0.0-rc.3"
+rand = { version = "0.8.5", features = ["std_rng"], default-features = false }
+num-traits = { version = "0.2.16", features = ["libm"] }

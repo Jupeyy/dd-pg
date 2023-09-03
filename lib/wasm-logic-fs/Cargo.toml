@@ -1,0 +1,13 @@
+[package]
+name = "wasm-logic-fs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+base-fs = { path = "../base-fs" }
+base-fs-traits = { path = "../base-fs-traits" }
+wasm-runtime-types = { path = "../wasm-runtime-types" }
+wasmer = { version = "4.1.2", features = ["core", "tracing"] }
+bincode = "2.0.0-rc.3"
+pollster = "0.3.0"
