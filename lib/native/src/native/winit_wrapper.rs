@@ -14,6 +14,8 @@ struct WindowMouse {
     last_mouse_mode: CursorGrabMode,
 
     cursor_main_pos: (f64, f64),
+
+    dbg_mode: bool,
 }
 
 impl WindowMouse {
@@ -23,12 +25,12 @@ impl WindowMouse {
         window: &Window,
         internal_events: Option<&mut LinkedHashSet<InternalEvent>>,
     ) -> bool {
-        if self.last_mouse_mode != mode {
+        if self.last_mouse_mode != mode && !self.dbg_mode {
             match window.set_cursor_grab(mode) {
                 Ok(_) => {
                     self.last_mouse_mode = mode;
-                    if let CursorGrabMode::Confined = mode {
-                        window.set_cursor_visible(true); // TODO: must be hidden for ingame, but visisble for GUI (or render own cursor)
+                    if matches!(mode, CursorGrabMode::Confined) {
+                        window.set_cursor_visible(false);
                     } else {
                         window.set_cursor_visible(true);
                     }
@@ -113,6 +115,8 @@ impl WinitWrapper {
                     last_user_mouse_mode_request: CursorGrabMode::None,
                     last_mouse_mode: CursorGrabMode::None,
                     cursor_main_pos: Default::default(),
+
+                    dbg_mode: native_options.dbg_input,
                 },
                 internal_events: Default::default(),
             },

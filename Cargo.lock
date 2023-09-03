@@ -5335,6 +5335,7 @@ dependencies = [
  "api-ui",
  "bincode",
  "egui",
+ "egui_extras",
  "graphics-base",
  "graphics-types",
  "ui-base",

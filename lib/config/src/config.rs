@@ -81,6 +81,10 @@ pub struct ConfigInput {
     pub mouse_min_distance: u64,
     #[serde(default)]
     pub mouse_max_distance: u64,
+
+    /// make the mouse not grab
+    #[serde(default)]
+    pub dbg_mode: bool,
 }
 
 impl Default for ConfigInput {
@@ -91,6 +95,7 @@ impl Default for ConfigInput {
             mouse_deadzone: 0,
             mouse_min_distance: 0,
             mouse_max_distance: 400,
+            dbg_mode: false,
         }
     }
 }

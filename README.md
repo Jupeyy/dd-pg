@@ -3,7 +3,7 @@ rustup target add wasm32-unknown-unknown
 cargo build --target wasm32-unknown-unknown -p <proj>
 
 symbolic link the wasm build dir to the config dir mod dir:
-cargo watch -x "build --target wasm32-unknown-unknown -p <proj> --release && mv target/wasm32-unknown-unknown/release/<name>.wasm /home/jupeyy/.config/ddnet/mods/ui/wasm/wasm.wasm"
+cargo watch -x "build --target wasm32-unknown-unknown -p <proj> --release && cp target/wasm32-unknown-unknown/release/<name>.wasm /home/jupeyy/.config/ddnet/mods/ui/wasm/wasm.wasm"
 
 bundle:
 cargo install cargo-bundle

@@ -214,6 +214,7 @@ pub fn ddnet_main(mut sys: System, cert: &[u8], shared_info: Arc<ServerInfo>) {
 
     let sys_time = sys.time.clone();
     let do_bench = config.dbg.bench;
+    let dbg_input = config.inp.dbg_mode;
     let client = ClientNativeLoadingImpl {
         _logger: sys.log.logger("client"),
         sys,
@@ -230,9 +231,10 @@ pub fn ddnet_main(mut sys: System, cert: &[u8], shared_info: Arc<ServerInfo>) {
     Native::run_loop::<ClientNativeImpl, _>(
         client,
         NativeCreateOptions {
-            do_bench: do_bench,
+            do_bench,
             title: "DDNet".to_string(),
             sys: &sys_time,
+            dbg_input,
         },
     )
 }

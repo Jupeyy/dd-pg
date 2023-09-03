@@ -29,6 +29,7 @@ pub trait FromNativeLoadingImpl<L> {
 #[derive(Debug)]
 pub struct NativeCreateOptions<'a> {
     pub do_bench: bool,
+    pub dbg_input: bool,
     pub title: String,
     pub sys: &'a Arc<SystemTime>,
 }
