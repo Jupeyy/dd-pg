@@ -1,0 +1,25 @@
+[package]
+name = "server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+base = { path = "../../lib/base" }
+base-fs = { path = "../../lib/base-fs" }
+base-log = { path = "../../lib/base-log" }
+network = { path = "../../lib/network" }
+server-database = { path = "../server-database" }
+shared-base = { path = "../shared-base" }
+shared-game = { path = "../shared-game" }
+shared-network = { path = "../shared-network" }
+shared = { path = "../shared" }
+config = { path = "../../lib/config" }
+config-fs = { path = "../../lib/config-fs" }
+pool = { path = "../../lib/pool" }
+rayon = "1.7.0"
+tokio = { version = "1.32.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+rcgen = "0.11.1"
+arrayvec = "0.7.4"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+thiserror = "1.0.47"

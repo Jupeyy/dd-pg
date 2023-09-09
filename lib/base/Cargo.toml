@@ -1,0 +1,9 @@
+[package]
+name = "base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-log = { path = "../base-log" }
+arrayvec = "0.7.4"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }

@@ -1,0 +1,31 @@
+[package]
+name = "client-render"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-fs = { path = "../../lib/base-fs" }
+base-fs-traits = { path = "../../lib/base-fs-traits" }
+config = { path = "../../lib/config" }
+graphics-backend = { path = "../../lib/graphics-backend" }
+graphics-base = { path = "../../lib/graphics-base" }
+graphics-base-traits = { path = "../../lib/graphics-base-traits" }
+graphics-traits = { path = "../../lib/graphics-traits" }
+graphics-render-traits = { path = "../../lib/graphics-render-traits" }
+graphics-types = { path = "../../lib/graphics-types" }
+graphics = { path = "../../lib/graphics" }
+image = { path = "../../lib/image" }
+pool = { path = "../../lib/pool" }
+math = { path = "../../lib/math" }
+shared = { path = "../shared" }
+shared-game = { path = "../shared-game" }
+shared-base = { path = "../shared-base" }
+serde = "1.0.187"
+arrayvec = "0.7.4"
+async-trait = "0.1.73"
+fixed = "1.23.1"
+anyhow = "1.0.75"
+rayon = "1.7.0"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+tokio = { version = "1.32.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }

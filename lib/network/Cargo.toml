@@ -1,0 +1,24 @@
+[package]
+name = "network"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+base-log = { path = "../base-log" }
+pool = { path = "../pool" }
+quinn = "0.10.2"
+rustls = { version = "0.21.6", features = ["dangerous_configuration"] }
+rcgen = "0.11.1"
+tokio = { version = "1.32.0", features = ["rt-multi-thread", "sync", "time", "macros"] }
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+anyhow = "1.0.75"
+async-trait = "0.1.73"
+bytes = "1.4.0"
+arrayvec = "0.7.4"
+tokio-tungstenite = { version = "0.20.0", features = ["rustls"] }
+pollster = "0.3.0"
+futures-util = "0.3.28"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+iprange = "0.6.7"
+ipnet = "2.8.0"

@@ -1,0 +1,7 @@
+[package]
+name = "base-log"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+arrayvec = "0.7.4"

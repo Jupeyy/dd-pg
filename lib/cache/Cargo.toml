@@ -1,0 +1,12 @@
+[package]
+name = "cache"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.75"
+base-fs = { path = "../base-fs" }
+base-fs-traits = { path = "../base-fs-traits" }
+serde = { version = "1.0.187", features = ["derive"] }
+tokio = { version = "1.32.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+sha3 = "0.10.8"

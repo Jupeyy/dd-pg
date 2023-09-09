@@ -1,0 +1,10 @@
+[package]
+name = "graphics-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+graphics-types = { path = "../graphics-types" }
+graphics-base-traits = { path = "../graphics-base-traits" }
+math = { path = "../math" }
