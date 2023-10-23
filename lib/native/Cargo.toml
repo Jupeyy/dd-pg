@@ -1,0 +1,13 @@
+[package]
+name = "native"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+anyhow = "1.0.75"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+num-derive = "0.4.0"
+num-traits = "0.2.16"
+winit = { git = "https://github.com/rust-windowing/winit.git", rev = "8c8fb39fcd147fc86e722374cbd0632888299947" }
+signal-hook = "0.3.17"

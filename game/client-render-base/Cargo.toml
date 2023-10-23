@@ -1,0 +1,24 @@
+[package]
+name = "client-render-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-io = { path = "../../lib/base-io" }
+math = { path = "../../lib/math" }
+client-containers = { path = "../client-containers" }
+config = { path = "../../lib/config" }
+graphics-backend-traits = { path = "../../lib/graphics-backend-traits" }
+graphics-base = { path = "../../lib/graphics-base" }
+graphics = { path = "../../lib/graphics" }
+graphics-base-traits = { path = "../../lib/graphics-base-traits" }
+graphics-traits = { path = "../../lib/graphics-traits" }
+graphics-render-traits = { path = "../../lib/graphics-render-traits" }
+graphics-types = { path = "../../lib/graphics-types" }
+shared-base = { path = "../shared-base" }
+shared-game = { path = "../shared-game" }
+pool = { path = "../../lib/pool" }
+image = { path = "../../lib/image" }
+serde = "1.0.187"
+rayon = "1.8.0"

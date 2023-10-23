@@ -1,0 +1,25 @@
+[package]
+name = "graphics"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+base-log = { path = "../base-log" }
+config = { path = "../config" }
+math = { path = "../math" }
+graphics-backend-traits = { path = "../graphics-backend-traits" }
+graphics-base = { path = "../graphics-base" }
+graphics-types = { path = "../graphics-types" }
+graphics-base-traits = { path = "../graphics-base-traits" }
+graphics-traits = { path = "../graphics-traits" }
+graphics-render-traits = { path = "../graphics-render-traits" }
+image = { path = "../image" }
+pool = { path = "../pool" }
+num-derive = "0.4.0"
+num-traits = "0.2.16"
+rayon = "1.8.0"
+bitflags = { version = "2.4.0", features = ["serde"] }
+anyhow = "1.0.75"
+arrayvec = "0.7.4"
+thiserror = "1.0.47"

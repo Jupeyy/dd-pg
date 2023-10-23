@@ -1,0 +1,12 @@
+[package]
+name = "sql"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-fs = { path = "../base-fs" }
+base-log = { path = "../base-log" }
+base-io = { path = "../base-io" }
+anyhow = "1.0.75"
+sqlx = { version = "0.7.1", features = ["runtime-tokio", "sqlx-mysql", "mysql"] }
+tokio = { version = "1.32.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }

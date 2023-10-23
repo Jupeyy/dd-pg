@@ -1,0 +1,150 @@
+[workspace]
+members = [
+    "lib/av-encoder",
+    "lib/cache",
+    "lib/wasm-runtime",
+    "lib/wasm-runtime-types",
+    "lib/wasm-logic-fs",
+    "lib/wasm-logic-graphics",
+    "lib/ui-wasm-manager",
+    "lib/native",
+    "lib/network",
+    "lib/base",
+    "lib/base-fs",
+    "lib/base-fs-traits",
+    "lib/base-io",
+    "lib/base-log",
+    "lib/config",
+    "lib/config-fs",
+    "lib/config-macro",
+    "lib/graphics-base",
+    "lib/graphics",
+    "lib/graphics-backend",
+    "lib/graphics-backend-traits",
+    "lib/graphics-types",
+    "lib/graphics-base-traits",
+    "lib/graphics-traits",
+    "lib/graphics-render-traits",
+    "lib/api",
+    "lib/api-wasm-macros",
+    "lib/api-macros",
+    "lib/api-ui",
+    "lib/image",
+    "lib/pool",
+    "lib/sound",
+    "lib/sql",
+    "lib/ui-base",
+    "lib/ui-traits",
+    "examples/wasm-modules/ui",
+    "examples/wasm-modules/state",
+    "src/server-bin",
+    "src/emoticon-convert",
+    "src/game-convert",
+    "src/skin-convert",
+    "src/part-convert",
+    "game/client-extra",
+    "game/client-map",
+    "game/client-render-base",
+    "game/client-render",
+    "game/client-types",
+    "game/client-containers",
+    "game/client-ui",
+    "game/server",
+    "game/server-database",
+    "game/shared-base",
+    "game/shared-game",
+    "game/shared-network",
+    "game/shared",
+    "game/api-state",
+]
+
+[package]
+name = "ddnet-playground"
+description = "DDraceNetwork, a free cooperative platformer game"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "Zlib"
+
+[dependencies]
+cache = { path = "lib/cache" }
+wasm-runtime = { path = "lib/wasm-runtime" }
+ui-wasm-manager = { path = "lib/ui-wasm-manager" }
+native = { path = "lib/native" }
+network = { path = "lib/network" }
+math = { path = "lib/math" }
+base = { path = "lib/base" }
+base-fs = { path = "lib/base-fs" }
+base-fs-traits = { path = "lib/base-fs-traits" }
+base-io = { path = "lib/base-io" }
+base-log = { path = "lib/base-log" }
+config = { path = "lib/config" }
+config-fs = { path = "lib/config-fs" }
+graphics-base = { path = "lib/graphics-base" }
+graphics = { path = "lib/graphics" }
+graphics-backend = { path = "lib/graphics-backend" }
+graphics-backend-traits = { path = "lib/graphics-backend-traits" }
+graphics-types = { path = "lib/graphics-types" }
+graphics-base-traits = { path = "lib/graphics-base-traits" }
+graphics-traits = { path = "lib/graphics-traits" }
+graphics-render-traits = { path = "lib/graphics-render-traits" }
+image = { path = "lib/image" }
+sound = { path = "lib/sound" }
+ui-base = { path = "lib/ui-base" }
+ui-traits = { path = "lib/ui-traits" }
+pool = { path = "lib/pool" }
+client-render-base = { path = "game/client-render-base" }
+client-render = { path = "game/client-render" }
+client-map = { path = "game/client-map" }
+client-types = { path = "game/client-types" }
+client-containers = { path = "game/client-containers" }
+server = { path = "game/server" }
+shared-base = { path = "game/shared-base" }
+shared-game = { path = "game/shared-game" }
+shared-network = { path = "game/shared-network" }
+shared = { path = "game/shared" }
+egui-winit = { path = "lib/egui-winit" }
+libc = "0.2.147"
+winit = { git = "https://github.com/rust-windowing/winit.git", rev = "8c8fb39fcd147fc86e722374cbd0632888299947" }
+flate2 = "1.0.27"
+quinn = "0.10.2"
+rustls = "0.21.6"
+rcgen = "0.11.1"
+tokio = { version = "1.32.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+num = "0.4.1"
+arrayvec = "0.7.4"
+num-traits = "0.2.16"
+num-derive = "0.4.0"
+egui = { version = "0.22.0", features = ["serde"] }
+rayon = "1.8.0"
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+bytes = "1.4.0"
+egui_extras = "0.22.0"
+emath = "0.22.0"
+fixed = "1.23.1"
+serde = "1.0.187"
+serde-value = "0.7.0"
+tokio-tungstenite = "0.20.0"
+anyhow = "1.0.75"
+thiserror = "1.0.47"
+async-trait = "0.1.73"
+bitflags = { version = "2.4.0", features = ["serde"] }
+serde_json = "1.0.105"
+wasmer = "4.1.2"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+palette = "0.7.3"
+
+[profile.release]
+lto = false
+opt-level = 3
+codegen-units = 1
+strip = false
+
+[package.metadata.bundle]
+short_description = "DDraceNetwork, a free cooperative platformer game"
+long_description = """
+DDraceNetwork (DDNet) is an actively maintained version of DDRace, a Teeworlds modification with a unique cooperative gameplay.
+Help each other play through custom maps, compete against the best in international tournaments, design your own maps, or run your own server.
+The official servers are around the world.
+All ranks made on official servers are available worldwide and you can collect points!
+"""

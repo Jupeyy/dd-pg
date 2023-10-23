@@ -1,0 +1,10 @@
+[package]
+name = "client-types"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pool = { path = "../../lib/pool" }
+shared-base = { path = "../shared-base" }
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+serde = "1.0.187"

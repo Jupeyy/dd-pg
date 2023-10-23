@@ -1,0 +1,20 @@
+[package]
+name = "client-ui"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+client-types = { path = "../client-types" }
+client-containers = { path = "../client-containers" }
+client-render-base = { path = "../client-render-base" }
+config = { path = "../../lib/config" }
+ui-base = { path = "../../lib/ui-base" }
+ui-traits = { path = "../../lib/ui-traits" }
+math = { path = "../../lib/math" }
+graphics = { path = "../../lib/graphics" }
+graphics-base = { path = "../../lib/graphics-base" }
+graphics-types = { path = "../../lib/graphics-types" }
+graphics-backend-traits = { path = "../../lib/graphics-backend-traits" }
+egui = { version = "0.22.0", features = ["serde"] }
+egui_extras = "0.22.0"
+fuzzy-matcher = "0.3.7"

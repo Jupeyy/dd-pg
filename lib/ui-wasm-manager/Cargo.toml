@@ -1,0 +1,30 @@
+[package]
+name = "ui-wasm-manager"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../math" }
+base-fs-traits = { path = "../base-fs-traits" }
+base-io = { path = "../base-io" }
+config = { path = "../config" }
+native = { path = "../native" }
+cache = { path = "../cache" }
+wasm-runtime = { path = "../wasm-runtime" }
+wasm-logic-fs = { path = "../wasm-logic-fs" }
+wasm-logic-graphics = { path = "../wasm-logic-graphics" }
+graphics = { path = "../graphics" }
+graphics-backend = { path = "../graphics-backend" }
+graphics-base = { path = "../graphics-base" }
+graphics-types = { path = "../graphics-types" }
+graphics-base-traits = { path = "../graphics-base-traits" }
+graphics-traits = { path = "../graphics-traits" }
+graphics-render-traits = { path = "../graphics-render-traits" }
+egui-winit = { path = "../egui-winit" }
+ui-base = { path = "../ui-base" }
+ui-traits = { path = "../ui-traits" }
+egui = { version = "0.22.0", features = ["serde"] }
+anyhow = "1.0.75"
+wasmer = { version = "4.1.2", features = ["core", "tracing", "enable-serde"] }
+raw-window-handle = "0.5.2"
+winit = { git = "https://github.com/rust-windowing/winit.git", rev = "8c8fb39fcd147fc86e722374cbd0632888299947" }

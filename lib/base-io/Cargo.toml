@@ -1,0 +1,19 @@
+[package]
+name = "base-io"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-log = { path = "../base-log" }
+base-fs-traits = { path = "../base-fs-traits" }
+anyhow = "1.0.75"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+tokio = { version = "1.32.0", features = ["sync", "macros"] }
+async-executor = "1.5.4"
+async-task = "4.4.1"
+futures-lite = "1.13.0"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+tokio = { version = "1.32.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+

@@ -1,0 +1,34 @@
+[package]
+name = "client-containers"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-fs-traits = { path = "../../lib/base-fs-traits" }
+base-io = { path = "../../lib/base-io" }
+base-log = { path = "../../lib/base-log" }
+config = { path = "../../lib/config" }
+graphics-backend-traits = { path = "../../lib/graphics-backend-traits" }
+graphics-base = { path = "../../lib/graphics-base" }
+graphics-base-traits = { path = "../../lib/graphics-base-traits" }
+graphics-traits = { path = "../../lib/graphics-traits" }
+graphics-render-traits = { path = "../../lib/graphics-render-traits" }
+graphics-types = { path = "../../lib/graphics-types" }
+graphics = { path = "../../lib/graphics" }
+ui-base = { path = "../../lib/ui-base" }
+ui-traits = { path = "../../lib/ui-traits" }
+image = { path = "../../lib/image" }
+pool = { path = "../../lib/pool" }
+math = { path = "../../lib/math" }
+client-types = { path = "../client-types" }
+serde = "1.0.187"
+arrayvec = "0.7.4"
+async-trait = "0.1.73"
+fixed = "1.23.1"
+anyhow = "1.0.75"
+rayon = "1.8.0"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+num-derive = "0.4.0"
+num-traits = "0.2.16"
+strum_macros = "0.25.2"

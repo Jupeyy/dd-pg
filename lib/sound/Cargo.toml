@@ -1,0 +1,15 @@
+[package]
+name = "sound"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../math" }
+base = { path = "../base" }
+base-fs = { path = "../base-fs" }
+base-fs-traits = { path = "../base-fs-traits" }
+base-io = { path = "../base-io" }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+kira = "0.8.4"
+mint = "0.5.9"
+anyhow = "1.0.75"

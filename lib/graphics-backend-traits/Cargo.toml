@@ -1,0 +1,10 @@
+[package]
+name = "graphics-backend-traits"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+graphics-types = { path = "../graphics-types" }
+graphics-base-traits = { path = "../graphics-base-traits" }
+arrayvec = "0.7.4"
+anyhow = "1.0.75"

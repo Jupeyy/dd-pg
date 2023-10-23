@@ -1,0 +1,15 @@
+[package]
+name = "config-fs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-fs = { path = "../base-fs" }
+base-fs-traits = { path = "../base-fs-traits" }
+base-io = { path = "../base-io" }
+config = { path = "../config" }
+serde = { version = "1.0.187", features = ["derive"] }
+serde_json = "1.0.105"
+num-derive = "0.4.0"
+num-traits = "0.2.16"
+anyhow = "1.0.75"
