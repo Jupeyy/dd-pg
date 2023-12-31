@@ -1,0 +1,45 @@
+[package]
+name = "graphics-backend"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+base-fs = { path = "../base-fs" }
+base-io-traits = { path = "../base-io-traits" }
+base-log = { path = "../base-log" }
+base-io = { path = "../base-io" }
+config = { path = "../config" }
+cache = { path = "../cache" }
+hiarc = { path = "../hiarc", features = ["enable_parking_lot", "enable_spin"] }
+hiarc-macro = { path = "../hiarc-macro" }
+native = { path = "../native" }
+graphics = { path = "../graphics" }
+graphics-types = { path = "../graphics-types" }
+graphics-base-traits = { path = "../graphics-base-traits" }
+graphics-backend-traits = { path = "../graphics-backend-traits" }
+pool = { path = "../pool" }
+math = { path = "../math" }
+libc = "0.2.151"
+ash-window = "0.12.0"
+naga = { version = "0.14.2", features = ["wgsl-in", "spv-out", "glsl-out"] }
+winit = { git = "https://github.com/rust-windowing/winit.git", rev = "8c8fb39fcd147fc86e722374cbd0632888299947" }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+anyhow = "1.0.75"
+rayon = "1.8.0"
+arrayvec = "0.7.4"
+ash = "0.37.3"
+num-derive = "0.4.1"
+num-traits = "0.2.17"
+thiserror = "1.0.50"
+raw-window-handle = "0.5.2"
+spin = "0.9.8"
+atomic_enum = "0.2.0"
+parking_lot = "0.12.1"
+serde_json = "1.0.108"
+serde = { version = "1.0.193", features = ["derive"] }
+
+#[cfg(test)]
+base-http = { path = "../base-http" }
+naga_oil = "0.11.0"
+futures = "0.3.29"

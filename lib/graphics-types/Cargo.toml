@@ -1,0 +1,15 @@
+[package]
+name = "graphics-types"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+math = { path = "../math" }
+pool = { path = "../pool" }
+num-derive = "0.4.1"
+num-traits = "0.2.17"
+bitflags = { version = "2.4.1", features = ["serde"] }
+bincode = "2.0.0-rc.3"
+anyhow = "1.0.75"
+serde = "1.0.193"

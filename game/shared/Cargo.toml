@@ -1,0 +1,19 @@
+[package]
+name = "shared"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+base = { path = "../../lib/base" }
+base-io-traits = { path = "../../lib/base-io-traits" }
+base-io = { path = "../../lib/base-io" }
+cache = { path = "../../lib/cache" }
+shared-base = { path = "../shared-base" }
+shared-game = { path = "../shared-game" }
+wasm-runtime = { path = "../../lib/wasm-runtime" }
+api-wasm-macros = { path = "../../lib/api-wasm-macros" }
+pool = { path = "../../lib/pool" }
+wasmer = "4.2.4"
+anyhow = "1.0.75"
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }

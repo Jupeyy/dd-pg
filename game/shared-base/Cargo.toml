@@ -1,0 +1,21 @@
+[package]
+name = "shared-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+base = { path = "../../lib/base" }
+graphics-types = { path = "../../lib/graphics-types" }
+pool = { path = "../../lib/pool" }
+rayon = "1.8.0"
+arrayvec = { version = "0.7.4", features = ["serde"] }
+num-derive = "0.4.1"
+num-traits = "0.2.17"
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+flate2 = "1.0.28"
+anyhow = "1.0.75"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+serde = "1.0.193"
+indexmap = "2.1.0"
+bitflags = { version = "2.4.1", features = ["serde"] }

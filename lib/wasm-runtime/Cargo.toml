@@ -1,0 +1,11 @@
+[package]
+name = "wasm-runtime"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wasm-runtime-types = { path = "../wasm-runtime-types" }
+anyhow = "1.0.75"
+wasmer = { version = "4.2.4", features = ["core", "tracing", "enable-serde"] }
+bincode = "2.0.0-rc.3"
+arrayvec = "0.7.4"

@@ -1,0 +1,35 @@
+[package]
+name = "state"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+api = { path = "../../../lib/api" }
+api-macros = { path = "../../../lib/api-macros" }
+api-state = { path = "../../../game/api-state" }
+shared-base = { path = "../../../game/shared-base" }
+shared-game = { path = "../../../game/shared-game" }
+
+math = { path = "../../../lib/math" }
+base = { path = "../../../lib/base" }
+base-log = { path = "../../../lib/base-log" }
+graphics-types = { path = "../../../lib/graphics-types" }
+pool = { path = "../../../lib/pool" }
+hiarc = { path = "../../../lib/hiarc" }
+hiarc-macro = { path = "../../../lib/hiarc-macro" }
+api-wasm-macros = { path = "../../../lib/api-wasm-macros" }
+rayon = "1.8.0"
+arrayvec = { version = "0.7.4", features = ["serde"] }
+num = "0.4.1"
+num-derive = "0.4.1"
+num-traits = "0.2.17"
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+flate2 = "1.0.28"
+anyhow = "1.0.75"
+async-trait = "0.1.74"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+serde = "1.0.193"
+thiserror = "1.0.50"
+
+[lib]
+crate-type = ["cdylib"]

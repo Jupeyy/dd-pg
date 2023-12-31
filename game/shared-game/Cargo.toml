@@ -1,0 +1,25 @@
+[package]
+name = "shared-game"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+shared-base = { path = "../shared-base" }
+math = { path = "../../lib/math" }
+base = { path = "../../lib/base" }
+base-log = { path = "../../lib/base-log" }
+graphics-types = { path = "../../lib/graphics-types" }
+pool = { path = "../../lib/pool" }
+hiarc = { path = "../../lib/hiarc" }
+hiarc-macro = { path = "../../lib/hiarc-macro" }
+rayon = "1.8.0"
+arrayvec = { version = "0.7.4", features = ["serde"] }
+num = "0.4.1"
+num-derive = "0.4.1"
+num-traits = "0.2.17"
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+flate2 = "1.0.28"
+anyhow = "1.0.75"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+serde = "1.0.193"
+thiserror = "1.0.50"

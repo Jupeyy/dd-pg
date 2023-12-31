@@ -1,0 +1,23 @@
+[package]
+name = "client-map"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-io = { path = "../../lib/base-io" }
+math = { path = "../../lib/math" }
+client-containers = { path = "../client-containers" }
+client-render-base = { path = "../client-render-base" }
+config = { path = "../../lib/config" }
+graphics-backend-traits = { path = "../../lib/graphics-backend-traits" }
+graphics = { path = "../../lib/graphics" }
+graphics-base-traits = { path = "../../lib/graphics-base-traits" }
+graphics-types = { path = "../../lib/graphics-types" }
+shared-base = { path = "../shared-base" }
+shared-game = { path = "../shared-game" }
+pool = { path = "../../lib/pool" }
+image = { path = "../../lib/image" }
+rayon = "1.8.0"
+shared = { path = "../shared" }
+futures = "0.3.30"

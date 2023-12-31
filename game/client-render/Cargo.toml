@@ -1,0 +1,44 @@
+[package]
+name = "client-render"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-io-traits = { path = "../../lib/base-io-traits" }
+base-io = { path = "../../lib/base-io" }
+ui-wasm-manager = { path = "../../lib/ui-wasm-manager" }
+network = { path = "../../lib/network" }
+config = { path = "../../lib/config" }
+graphics-backend = { path = "../../lib/graphics-backend" }
+graphics-base-traits = { path = "../../lib/graphics-base-traits" }
+graphics-types = { path = "../../lib/graphics-types" }
+graphics = { path = "../../lib/graphics" }
+ui-base = { path = "../../lib/ui-base" }
+ui-traits = { path = "../../lib/ui-traits" }
+native = { path = "../../lib/native" }
+egui-winit = { path = "../../lib/egui-winit" }
+image = { path = "../../lib/image" }
+pool = { path = "../../lib/pool" }
+math = { path = "../../lib/math" }
+shared-game = { path = "../shared-game" }
+shared-base = { path = "../shared-base" }
+client-ui = { path = "../client-ui" }
+shared-network = { path = "../shared-network" }
+client-render-base = { path = "../client-render-base" }
+client-types = { path = "../client-types" }
+client-containers = { path = "../client-containers" }
+game-config = { path = "../game-config" }
+serde = "1.0.193"
+arrayvec = "0.7.4"
+async-trait = "0.1.74"
+fixed = "1.24.0"
+anyhow = "1.0.75"
+rayon = "1.8.0"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+tokio = { version = "1.35.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+egui = { version = "0.23.0", features = ["serde"] }
+winit = { git = "https://github.com/rust-windowing/winit.git", rev = "8c8fb39fcd147fc86e722374cbd0632888299947" }
+num-derive = "0.4.1"
+num-traits = "0.2.17"
+strum_macros = "0.25.3"

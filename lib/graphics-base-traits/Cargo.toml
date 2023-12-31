@@ -1,0 +1,9 @@
+[package]
+name = "graphics-base-traits"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+graphics-types = { path = "../graphics-types" }
+pool = { path = "../pool" }
+anyhow = "1.0.75"

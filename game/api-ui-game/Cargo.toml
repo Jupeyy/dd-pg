@@ -1,0 +1,21 @@
+[package]
+name = "api-ui-game"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+api = { path = "../../lib/api" }
+api-ui = { path = "../../lib/api-ui" }
+config = { path = "../../lib/config" }
+ui-base = { path = "../../lib/ui-base" }
+ui-traits = { path = "../../lib/ui-traits" }
+graphics = { path = "../../lib/graphics" }
+graphics-base-traits = { path = "../../lib/graphics-base-traits" }
+graphics-backend-traits = { path = "../../lib/graphics-backend-traits" }
+graphics-types = { path = "../../lib/graphics-types" }
+once_cell = "1.19.0"
+egui = { version = "0.23.0", features = ["serde"] }
+
+client-containers = { path = "../../game/client-containers" }
+client-render-base = { path = "../../game/client-render-base" }
+base-log = { path = "../../lib/base-log" }

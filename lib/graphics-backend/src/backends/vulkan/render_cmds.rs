@@ -1,0 +1,406 @@
+use std::sync::Arc;
+
+use ash::vk;
+use graphics_backend_traits::plugin::{
+    BackendRenderInterface, BackendShaderStage, SubRenderPassAttributes,
+};
+use graphics_types::{
+    commands::{
+        CommandClear, CommandRender, CommandRenderQuadContainer,
+        CommandRenderQuadContainerAsSpriteMultiple, CommandsRender, CommandsRenderQuadContainer,
+        CommandsRenderStream, PrimType, GRAPHICS_MAX_UNIFORM_RENDER_COUNT,
+    },
+    rendering::{ColorRGBA, GlVertex, State, WrapType},
+};
+use math::math::vector::{vec2, vec4};
+
+use super::{
+    command_pool::AutoCommandBuffer,
+    logical_device::LogicalDevice,
+    render_fill_manager::RenderCommandExecuteBuffer,
+    render_manager::RenderManager,
+    render_pass::CanvasSetup,
+    vulkan::VulkanCustomPipes,
+    vulkan_types::{EVulkanBackendAddressModes, RenderPassType},
+    vulkan_uniform::{
+        SUniformPrimExGVertColor, SUniformSpriteMultiGVertColor, UniformGBlur, UniformGPos,
+        UniformPrimExGPos, UniformPrimExGPosRotationless, UniformPrimExGVertColorAlign,
+        UniformSpriteMultiGPos, UniformSpriteMultiGVertColorAlign,
+    },
+};
+
+pub fn get_address_mode_index(state: &State) -> usize {
+    if state.wrap_mode == WrapType::Repeat {
+        EVulkanBackendAddressModes::Repeat as usize
+    } else {
+        EVulkanBackendAddressModes::ClampEdges as usize
+    }
+}
+
+#[must_use]
+fn render_blur<TName>(
+    mut render_manager: RenderManager,
+    state: &State,
+    prim_type: PrimType,
+    primitive_count: usize,
+    blur_radius: f32,
+    scale: vec2,
+    blur_color: vec4,
+) -> bool {
+    let mut m: [f32; 4 * 2] = Default::default();
+    render_manager.get_state_matrix(state, &mut m);
+
+    render_manager.bind_pipeline(state, SubRenderPassAttributes::BlurPipeline);
+
+    render_standard_impl::<TName, false>(
+        render_manager,
+        prim_type,
+        primitive_count,
+        &m,
+        true,
+        blur_radius,
+        scale,
+        blur_color,
+    )
+}
+
+#[must_use]
+fn render_standard_impl<TName, const IS_3D_TEXTURED: bool>(
+    render_manager: RenderManager,
+    prim_type: PrimType,
+    primitive_count: usize,
+    m: &[f32],
+    as_blur: bool,
+    blur_radius: f32,
+    scale: vec2,
+    blur_color: vec4,
+) -> bool {
+    let mut vert_per_prim: usize = 2;
+    let mut is_indexed: bool = false;
+    if prim_type == PrimType::Quads {
+        vert_per_prim = 4;
+        is_indexed = true;
+    } else if prim_type == PrimType::Triangles {
+        vert_per_prim = 3;
+    }
+
+    render_manager.bind_vertex_buffer();
+
+    if is_indexed {
+        render_manager.bind_index_buffer(0);
+    }
+    if render_manager.is_textured() {
+        render_manager.bind_texture_descriptor_sets(0, 0);
+    }
+
+    render_manager.push_constants(BackendShaderStage::VERTEX, 0, unsafe {
+        std::slice::from_raw_parts(
+            m.as_ptr() as *const _ as *const u8,
+            m.len() * std::mem::size_of::<f32>(),
+        )
+    });
+    if as_blur {
+        let viewport_size = render_manager.viewport_size();
+        let blur_push = UniformGBlur {
+            texture_size: vec2::new(viewport_size.width as f32, viewport_size.height as f32),
+            blur_radius,
+            scale,
+            color: blur_color,
+        };
+        render_manager.push_constants(
+            BackendShaderStage::FRAGMENT,
+            std::mem::size_of::<UniformGPos>() as u32,
+            unsafe {
+                std::slice::from_raw_parts(
+                    &blur_push as *const _ as *const u8,
+                    std::mem::size_of::<UniformGBlur>(),
+                )
+            },
+        );
+    }
+
+    if is_indexed {
+        render_manager.draw_indexed((primitive_count * 6) as u32, 1, 0, 0, 0);
+    } else {
+        render_manager.draw((primitive_count * vert_per_prim) as u32, 1, 0, 0);
+    }
+
+    true
+}
+
+#[must_use]
+fn render_standard<TName, const IS_3D_TEXTURED: bool>(
+    mut render_manager: RenderManager,
+    state: &State,
+    prim_type: PrimType,
+    primitive_count: usize,
+) -> bool {
+    let mut m: [f32; 4 * 2] = Default::default();
+    render_manager.get_state_matrix(state, &mut m);
+
+    let is_line_geometry: bool = prim_type == PrimType::Lines;
+
+    render_manager.bind_pipeline(
+        state,
+        if IS_3D_TEXTURED {
+            SubRenderPassAttributes::Standard3dPipeline
+        } else {
+            if is_line_geometry {
+                SubRenderPassAttributes::StandardLinePipeline
+            } else {
+                SubRenderPassAttributes::StandardPipeline
+            }
+        },
+    );
+
+    render_standard_impl::<TName, { IS_3D_TEXTURED }>(
+        render_manager,
+        prim_type,
+        primitive_count,
+        &m,
+        false,
+        0.0,
+        vec2::default(),
+        vec4::default(),
+    )
+}
+
+#[must_use]
+fn cmd_render(render_manager: RenderManager, cmd: &CommandRender) -> bool {
+    render_standard::<GlVertex, false>(render_manager, &cmd.state, cmd.prim_type, cmd.prim_count)
+}
+
+#[must_use]
+fn cmd_render_blurred(
+    render_manager: RenderManager,
+    cmd: &CommandRender,
+    blur_radius: f32,
+    scale: vec2,
+    blur_color: vec4,
+) -> bool {
+    // draw where the stencil buffer triggered
+    if !render_blur::<GlVertex>(
+        render_manager,
+        &cmd.state,
+        cmd.prim_type,
+        cmd.prim_count,
+        blur_radius,
+        scale,
+        blur_color,
+    ) {
+        return false;
+    }
+
+    true
+}
+
+#[must_use]
+fn cmd_render_quad_container_ex(
+    mut render_manager: RenderManager,
+    cmd: &CommandRenderQuadContainer,
+) -> bool {
+    let mut m: [f32; 4 * 2] = Default::default();
+    render_manager.get_state_matrix(&cmd.state, &mut m);
+
+    let is_rotationless: bool = !(cmd.rotation != 0.0);
+    render_manager.bind_pipeline(
+        &cmd.state,
+        if is_rotationless {
+            SubRenderPassAttributes::PrimExRotationlessPipeline
+        } else {
+            SubRenderPassAttributes::PrimExPipeline
+        },
+    );
+
+    render_manager.bind_vertex_buffer();
+
+    let index_offset = cmd.offset as vk::DeviceSize;
+
+    render_manager.bind_index_buffer(index_offset);
+
+    if render_manager.is_textured() {
+        render_manager.bind_texture_descriptor_sets(0, 0);
+    }
+
+    let mut push_constant_vertex = UniformPrimExGPos::default();
+    let mut vertex_push_constant_size: usize = std::mem::size_of::<UniformPrimExGPos>();
+
+    let push_constant_color: SUniformPrimExGVertColor = cmd.vertex_color;
+    push_constant_vertex.base.pos = m;
+
+    if !is_rotationless {
+        push_constant_vertex.rotation = cmd.rotation;
+        push_constant_vertex.center = cmd.center;
+    } else {
+        vertex_push_constant_size = std::mem::size_of::<UniformPrimExGPosRotationless>();
+    }
+
+    render_manager.push_constants(BackendShaderStage::VERTEX, 0, unsafe {
+        std::slice::from_raw_parts(
+            &push_constant_vertex as *const UniformPrimExGPos as *const u8,
+            vertex_push_constant_size,
+        )
+    });
+    render_manager.push_constants(
+        BackendShaderStage::FRAGMENT,
+        (std::mem::size_of::<UniformPrimExGPos>()
+            + std::mem::size_of::<UniformPrimExGVertColorAlign>()) as u32,
+        unsafe {
+            std::slice::from_raw_parts(
+                &push_constant_color as *const ColorRGBA as *const u8,
+                std::mem::size_of::<SUniformPrimExGVertColor>(),
+            )
+        },
+    );
+
+    render_manager.draw_indexed((cmd.draw_num) as u32, 1, 0, 0, 0);
+
+    true
+}
+#[must_use]
+fn cmd_render_quad_container_as_sprite_multiple(
+    mut render_manager: RenderManager,
+    cmd: &CommandRenderQuadContainerAsSpriteMultiple,
+) -> bool {
+    let mut m: [f32; 4 * 2] = Default::default();
+    render_manager.get_state_matrix(&cmd.state, &mut m);
+
+    render_manager.bind_pipeline(&cmd.state, SubRenderPassAttributes::SpriteMultiPipeline);
+
+    render_manager.bind_vertex_buffer();
+
+    let index_offset = cmd.offset as vk::DeviceSize;
+    render_manager.bind_index_buffer(index_offset);
+
+    render_manager.bind_texture_descriptor_sets(0, 0);
+
+    let mut push_constant_vertex = UniformSpriteMultiGPos::default();
+
+    let push_constant_color: SUniformSpriteMultiGVertColor = cmd.vertex_color;
+
+    push_constant_vertex.pos = m;
+    push_constant_vertex.center = cmd.center;
+
+    render_manager.push_constants(BackendShaderStage::VERTEX, 0, unsafe {
+        std::slice::from_raw_parts(
+            &push_constant_vertex as *const UniformSpriteMultiGPos as *const u8,
+            std::mem::size_of::<UniformSpriteMultiGPos>(),
+        )
+    });
+    render_manager.push_constants(
+        BackendShaderStage::FRAGMENT,
+        (std::mem::size_of::<UniformSpriteMultiGPos>()
+            + std::mem::size_of::<UniformSpriteMultiGVertColorAlign>()) as u32,
+        unsafe {
+            std::slice::from_raw_parts(
+                &push_constant_color as *const SUniformSpriteMultiGVertColor as *const u8,
+                std::mem::size_of::<SUniformSpriteMultiGVertColor>(),
+            )
+        },
+    );
+
+    let rsp_count: usize = GRAPHICS_MAX_UNIFORM_RENDER_COUNT;
+    let mut draw_count = cmd.draw_count;
+
+    while draw_count > 0 {
+        let uniform_count = if draw_count > rsp_count {
+            rsp_count
+        } else {
+            draw_count
+        };
+
+        render_manager.bind_uniform_descriptor_sets(2, 0);
+
+        render_manager.draw_indexed((cmd.draw_num) as u32, uniform_count as u32, 0, 0, 0);
+
+        draw_count -= uniform_count;
+    }
+
+    true
+}
+
+fn cmd_clear(
+    device: &LogicalDevice,
+    exec_buffer: &RenderCommandExecuteBuffer,
+    command_buffer: &AutoCommandBuffer,
+    cmd: &CommandClear,
+) -> anyhow::Result<()> {
+    if exec_buffer.clear_color_in_render_thread {
+        let clear_attachments = [vk::ClearAttachment {
+            aspect_mask: vk::ImageAspectFlags::COLOR,
+            color_attachment: 0,
+            clear_value: vk::ClearValue {
+                color: vk::ClearColorValue {
+                    float32: [cmd.color.r, cmd.color.g, cmd.color.b, cmd.color.a],
+                },
+            },
+        }];
+        let clear_rects = [vk::ClearRect {
+            rect: vk::Rect2D {
+                offset: vk::Offset2D { x: 0, y: 0 },
+                extent: exec_buffer.viewport_size,
+            },
+            base_array_layer: 0,
+            layer_count: 1,
+        }];
+
+        unsafe {
+            device.device.cmd_clear_attachments(
+                command_buffer.command_buffer,
+                &clear_attachments,
+                &clear_rects,
+            );
+        }
+    }
+
+    Ok(())
+}
+
+pub(crate) fn command_cb_render(
+    custom_pipes: &Arc<VulkanCustomPipes>,
+    device: &LogicalDevice,
+    render: &CanvasSetup,
+    render_pass_type: RenderPassType,
+    cmd_param: &CommandsRender,
+    mut exec_buffer: RenderCommandExecuteBuffer,
+    command_buffer: &AutoCommandBuffer,
+) -> bool {
+    let mut render_manager = RenderManager::new(
+        device,
+        command_buffer,
+        &mut exec_buffer,
+        render,
+        render_pass_type,
+    );
+
+    match cmd_param {
+        CommandsRender::Clear(cmd) => cmd_clear(device, &exec_buffer, command_buffer, cmd).is_ok(),
+        CommandsRender::Stream(cmd) => match cmd {
+            CommandsRenderStream::Render(cmd) => cmd_render(render_manager, cmd),
+            CommandsRenderStream::RenderTex3D(_) => todo!(),
+            CommandsRenderStream::RenderBlurred {
+                cmd,
+                blur_radius,
+                scale,
+                blur_color,
+            } => cmd_render_blurred(render_manager, cmd, *blur_radius, *scale, *blur_color),
+        },
+        CommandsRender::QuadContainer(cmd) => match cmd {
+            CommandsRenderQuadContainer::Render(cmd) => {
+                cmd_render_quad_container_ex(render_manager, cmd)
+            }
+            CommandsRenderQuadContainer::RenderAsSpriteMultiple(cmd) => {
+                cmd_render_quad_container_as_sprite_multiple(render_manager, cmd)
+            }
+        },
+        CommandsRender::Mod { mod_name, cmd } => {
+            if let Some(pipe_index) = custom_pipes.pipe_indices.get(mod_name.as_str()) {
+                custom_pipes.pipes.read()[*pipe_index]
+                    .render(cmd, &mut render_manager)
+                    .is_ok()
+            } else {
+                false
+            }
+        }
+    }
+}

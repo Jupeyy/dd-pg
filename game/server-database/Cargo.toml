@@ -1,0 +1,10 @@
+[package]
+name = "server-database"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-log = { path = "../../lib/base-log" }
+sql = { path = "../../lib/sql" }
+sqlx = { version = "0.7.3", features = ["runtime-tokio", "sqlx-mysql", "mysql"] }
+tokio = { version = "1.35.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
