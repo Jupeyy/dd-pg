@@ -1,0 +1,26 @@
+[package]
+name = "graphics-mod"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+api = { path = "../../../lib/api" }
+api-macros = { path = "../../../lib/api-macros" }
+api-state = { path = "../../../game/api-state" }
+graphics = { path = "../../../lib/graphics" }
+
+base = { path = "../../../lib/base" }
+base-log = { path = "../../../lib/base-log" }
+math = { path = "../../../lib/math" }
+graphics-backend-traits = { path = "../../../lib/graphics-backend-traits" }
+graphics-types = { path = "../../../lib/graphics-types" }
+graphics-base-traits = { path = "../../../lib/graphics-base-traits" }
+image = { path = "../../../lib/image" }
+pool = { path = "../../../lib/pool", features = ["enable_hiarc"] }
+hiarc = { path = "../../../lib/hiarc", features = ["derive"] }
+num-derive = "0.4.2"
+num-traits = "0.2.18"
+rayon = "1.10.0"
+bitflags = { version = "2.5.0", features = ["serde"] }
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+arrayvec = "0.7.4"

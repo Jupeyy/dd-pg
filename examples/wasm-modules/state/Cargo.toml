@@ -1,0 +1,36 @@
+[package]
+name = "state"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+api = { path = "../../../lib/api" }
+api-macros = { path = "../../../lib/api-macros" }
+api-state = { path = "../../../game/api-state" }
+shared-base = { path = "../../../game/shared-base" }
+shared-game = { path = "../../../game/shared-game" }
+game-interface = { path = "../../../game/game-interface" }
+map = { path = "../../../game/map" }
+
+math = { path = "../../../lib/math" }
+base = { path = "../../../lib/base" }
+base-log = { path = "../../../lib/base-log" }
+graphics-types = { path = "../../../lib/graphics-types" }
+pool = { path = "../../../lib/pool" }
+hiarc = { path = "../../../lib/hiarc", features = ["derive"] }
+api-wasm-macros = { path = "../../../lib/api-wasm-macros" }
+rayon = "1.10.0"
+arrayvec = { version = "0.7.4", features = ["serde"] }
+num = "0.4.2"
+num-derive = "0.4.2"
+num-traits = "0.2.18"
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+flate2 = "1.0.28"
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+async-trait = "0.1.80"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+serde = "1.0.198"
+thiserror = "1.0.59"
+
+[lib]
+crate-type = ["cdylib"]

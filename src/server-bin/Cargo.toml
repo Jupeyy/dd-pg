@@ -1,0 +1,10 @@
+[package]
+name = "server-bin"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+network = { path = "../../lib/network" }
+base = { path = "../../lib/base" }
+server = { path = "../../game/server" }
+shared-base = { path = "../../game/shared-base" }

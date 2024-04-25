@@ -1,0 +1,35 @@
+[package]
+name = "client-render-game"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-io = { path = "../../lib/base-io" }
+base-log = { path = "../../lib/base-log" }
+math = { path = "../../lib/math" }
+config = { path = "../../lib/config" }
+image = { path = "../../lib/image" }
+graphics = { path = "../../lib/graphics" }
+graphics-types = { path = "../../lib/graphics-types" }
+hiarc = { path = "../../lib/hiarc", features = ["derive"] }
+pool = { path = "../../lib/pool" }
+client-containers-new = { path = "../client-containers-new" }
+client-render-base = { path = "../client-render-base" }
+client-render = { path = "../client-render" }
+client-types = { path = "../client-types" }
+client-ui = { path = "../client-ui" }
+game-config = { path = "../game-config" }
+shared-base = { path = "../shared-base" }
+shared-game = { path = "../shared-game" }
+game-interface = { path = "../game-interface" }
+map = { path = "../map" }
+sound = { path = "../../lib/sound" }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+num-traits = "0.2.18"
+num-derive = "0.4.2"
+rayon = "1.10.0"
+futures = "0.3.30"
+egui = { version = "0.27.2", features = ["serde"] }
+serde = { version = "1.0.198", features = ["derive"] }
+anyhow = { version = "1.0.82", features = ["backtrace"] }

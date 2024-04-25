@@ -1,0 +1,15 @@
+[package]
+name = "api-ui-game"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+api = { path = "../../lib/api" }
+ui-base = { path = "../../lib/ui-base" }
+graphics = { path = "../../lib/graphics" }
+once_cell = "1.19.0"
+egui = { version = "0.27.2", features = ["serde"] }
+
+client-containers-new = { path = "../../game/client-containers-new" }
+client-render-base = { path = "../../game/client-render-base" }
+base-log = { path = "../../lib/base-log" }

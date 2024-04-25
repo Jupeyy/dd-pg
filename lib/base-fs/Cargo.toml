@@ -1,0 +1,15 @@
+[package]
+name = "base-fs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io-traits = { path = "../base-io-traits" }
+base-log = { path = "../base-log" }
+# v5.0.1+ brings a MPL 2.0 dependency, i don't really like this lib anyway
+directories = { version = "=5.0.0" }
+tokio = { version = "1.37.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+notify = "6.1.1"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+async-trait = "0.1.80"
+anyhow = { version = "1.0.82", features = ["backtrace"] }

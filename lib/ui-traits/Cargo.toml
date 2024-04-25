@@ -1,0 +1,8 @@
+[package]
+name = "ui-traits"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ui-base = { path = "../ui-base" }
+egui = { version = "0.27.2", features = ["serde"] }
