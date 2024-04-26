@@ -1,0 +1,176 @@
+use std::sync::Arc;
+
+use base_io::{io::IO, io_batcher::IOBatcherTask};
+use client_types::server_browser::{
+    ServerBrowserData, ServerBrowserFilter, ServerBrowserInfo, ServerBrowserServer,
+};
+
+use game_config::config::Config;
+use master_server_types::{addr::Protocol, servers::BrowserServers};
+use shared_base::network::server_info::ServerInfo;
+use ui_base::types::{UIPipe, UIState};
+use ui_traits::traits::UIRenderCallbackFunc;
+
+use crate::{client_info::ClientInfo, events::UiEvents, main_menu::user_data::MainMenuInterface};
+
+use super::{
+    main_frame,
+    user_data::{RenderOptions, UserData},
+};
+
+pub struct MainMenuIO {
+    pub(crate) io: IO,
+    cur_servers_task: Option<IOBatcherTask<String>>,
+}
+
+impl MainMenuInterface for MainMenuIO {
+    fn refresh(&mut self) {
+        self.cur_servers_task = Some(MainMenuUI::req_server_list(&self.io));
+    }
+}
+
+pub struct MainMenuUI {
+    pub(crate) server_info: Arc<ServerInfo>,
+    pub(crate) client_info: ClientInfo,
+    pub(crate) browser_data: ServerBrowserData,
+
+    menu_io: MainMenuIO,
+    events: UiEvents,
+}
+
+impl MainMenuUI {
+    fn req_server_list(io: &IO) -> IOBatcherTask<String> {
+        let http = io.http.clone();
+        io.io_batcher
+            .spawn(async move {
+                http.download_text(
+                    "https://master1.ddnet.org/ddnet/15/servers.json"
+                        .try_into()
+                        .unwrap(),
+                )
+                .await
+            })
+            .cancelable()
+    }
+
+    pub fn new(
+        server_info: Arc<ServerInfo>,
+        client_info: ClientInfo,
+        events: UiEvents,
+        io: IO,
+    ) -> Self {
+        let cur_servers_task = Self::req_server_list(&io);
+
+        Self {
+            server_info,
+            client_info,
+            browser_data: ServerBrowserData {
+                servers: Vec::new(),
+                filter: ServerBrowserFilter {
+                    exclude: Default::default(),
+                    search: Default::default(),
+                },
+                cur_address: Default::default(),
+            },
+            menu_io: MainMenuIO {
+                io,
+                cur_servers_task: Some(cur_servers_task),
+            },
+            events,
+        }
+    }
+
+    pub(crate) fn get_user_data<'a>(
+        &'a mut self,
+        config: &'a mut Config,
+        hide_buttons_right: bool,
+    ) -> UserData<'a> {
+        UserData {
+            server_info: &self.server_info,
+            client_info: &self.client_info,
+            browser_data: &mut self.browser_data,
+            render_options: RenderOptions { hide_buttons_right },
+
+            main_menu: &mut self.menu_io,
+            config,
+            events: &self.events,
+        }
+    }
+}
+
+impl<'a> UIRenderCallbackFunc<Config> for MainMenuUI {
+    fn has_blur(&self) -> bool {
+        true
+    }
+
+    fn render_main_frame(
+        &mut self,
+        ui: &mut egui::Ui,
+        pipe: &mut UIPipe<Config>,
+        ui_state: &mut UIState,
+    ) {
+        main_frame::render(
+            ui,
+            &mut UIPipe {
+                cur_time: pipe.cur_time,
+                user_data: &mut self.get_user_data(pipe.user_data, false),
+            },
+            ui_state,
+            true,
+        );
+    }
+
+    fn render(&mut self, ui: &mut egui::Ui, pipe: &mut UIPipe<Config>, ui_state: &mut UIState) {
+        if let Some(server_task) = &self.menu_io.cur_servers_task {
+            if server_task.is_finished() {
+                let servers_raw = self
+                    .menu_io
+                    .cur_servers_task
+                    .take()
+                    .unwrap()
+                    .get_storage()
+                    .unwrap();
+                let servers: BrowserServers = serde_json::from_str(&servers_raw).unwrap();
+
+                let parsed_servers: Vec<ServerBrowserServer> = servers
+                    .servers
+                    .into_iter()
+                    .filter_map(|server| {
+                        if let Some(addr) = server
+                            .addresses
+                            .iter()
+                            .find(|addr| addr.protocol == Protocol::V6)
+                        {
+                            let info: serde_json::Result<ServerBrowserInfo> =
+                                serde_json::from_str(server.info.get());
+                            match info {
+                                Ok(info) => Some(ServerBrowserServer {
+                                    address: addr.ip.to_string() + ":" + &addr.port.to_string(),
+                                    info,
+                                }),
+                                Err(err) => {
+                                    println!("err {err}");
+                                    None
+                                }
+                            }
+                        } else {
+                            None
+                        }
+                    })
+                    .collect();
+
+                self.browser_data.servers = parsed_servers;
+            }
+        }
+
+        main_frame::render(
+            ui,
+            &mut UIPipe {
+                cur_time: pipe.cur_time,
+                user_data: &mut self.get_user_data(pipe.user_data, false),
+            },
+            ui_state,
+            false,
+        )
+    }
+}

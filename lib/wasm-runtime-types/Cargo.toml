@@ -1,0 +1,9 @@
+[package]
+name = "wasm-runtime-types"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wasmer = { version = "4.2.8", disable-default = true, features = ["sys", "cranelift"] }
+bincode = "2.0.0-rc.3"
+serde = "1.0.198"

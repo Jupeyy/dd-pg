@@ -1,0 +1,42 @@
+[package]
+name = "editor"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+math = { path = "../../lib/math" }
+config = { path = "../../lib/config" }
+network = { path = "../../lib/network" }
+ui-base = { path = "../../lib/ui-base" }
+ui-traits = { path = "../../lib/ui-traits" }
+base-io = { path = "../../lib/base-io" }
+image = { path = "../../lib/image" }
+graphics = { path = "../../lib/graphics" }
+graphics-types = { path = "../../lib/graphics-types" }
+hiarc = { path = "../../lib/hiarc", features = ["derive"] }
+pool = { path = "../../lib/pool" }
+sound = { path = "../../lib/sound" }
+egui-timeline = { path = "../egui-timeline" }
+map = { path = "../map" }
+map-convert-lib = { path = "../map-convert-lib" }
+client-render = { path = "../client-render" }
+client-containers-new = { path = "../client-containers-new" }
+client-render-base = { path = "../client-render-base" }
+game-config = { path = "../game-config" }
+egui = { version = "0.27.2", features = ["serde"] }
+egui_extras = "0.27.2"
+egui-file-dialog = "0.5.0"
+egui_commonmark = "0.15"
+async-trait = "0.1.80"
+bincode = { version = "2.0.0-rc.3", features = ["serde"] }
+serde = { version = "1.0.198", features = ["derive"] }
+tokio = { version = "1.37.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+rayon = "1.10.0"
+rand = { version = "0.8.5", features = ["std_rng"], default-features = false }
+time = { version = "0.3.36", features = ["serde"] }
+serde_json = "1.0.116"
+rcgen = "=0.11.3"
+ed25519-dalek = { version = "2.1.1", features = ["serde"] }

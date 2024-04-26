@@ -1,0 +1,12 @@
+[package]
+name = "native"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+pool = { path = "../pool" }
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+winit = { version = "0.29.15", default-features = false, features = ["x11", "wayland"] }
+raw-window-handle = "0.6.1"

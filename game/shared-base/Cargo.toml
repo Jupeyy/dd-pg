@@ -1,0 +1,35 @@
+[package]
+name = "shared-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+base = { path = "../../lib/base" }
+image = { path = "../../lib/image" }
+graphics-types = { path = "../../lib/graphics-types" }
+pool = { path = "../../lib/pool" }
+hiarc = { path = "../../lib/hiarc", features = ["enable_time"] }
+map = { path = "../map" }
+game-interface = { path = "../game-interface" }
+rayon = "1.10.0"
+arrayvec = { version = "0.7.4", features = ["serde"] }
+num-derive = "0.4.2"
+num-traits = "0.2.18"
+flate2 = "1.0.28"
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+serde = "1.0.198"
+indexmap = "2.2.6"
+bitflags = { version = "2.5.0", features = ["serde"] }
+serde_json = "1.0.116"
+time = { version = "0.3.36", features = ["serde"] }
+ed25519-dalek = { version = "2.1.1", default-features = false, features = ["serde"] }
+
+[dev-dependencies]
+base-fs = { path = "../../lib/base-fs" }
+base-io = { path = "../../lib/base-io" }
+difference = "2.0"
+lz4_flex = { version = "0.11" }
+zstd = "0.13"
+rust-lzma = "0.6.0"

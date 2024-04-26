@@ -1,0 +1,15 @@
+[package]
+name = "graphics"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../math" }
+graphics-backend-traits = { path = "../graphics-backend-traits" }
+graphics-types = { path = "../graphics-types" }
+graphics-base-traits = { path = "../graphics-base-traits" }
+image = { path = "../image" }
+pool = { path = "../pool", features = ["enable_hiarc"] }
+hiarc = { path = "../hiarc", features = ["derive"] }
+rayon = "1.10.0"
+anyhow = { version = "1.0.82", features = ["backtrace"] }

@@ -1,0 +1,37 @@
+[package]
+name = "shared"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+base = { path = "../../lib/base" }
+base-log = { path = "../../lib/base-log" }
+base-io-traits = { path = "../../lib/base-io-traits" }
+base-io = { path = "../../lib/base-io" }
+cache = { path = "../../lib/cache" }
+config = { path = "../../lib/config" }
+graphics = { path = "../../lib/graphics" }
+graphics-types = { path = "../../lib/graphics-types" }
+graphics-backend = { path = "../../lib/graphics-backend" }
+wasm-runtime = { path = "../../lib/wasm-runtime" }
+api-wasm-macros = { path = "../../lib/api-wasm-macros" }
+wasm-logic-fs = { path = "../../lib/wasm-logic-fs" }
+wasm-logic-graphics = { path = "../../lib/wasm-logic-graphics" }
+wasm-logic-sound = { path = "../../lib/wasm-logic-sound" }
+ui-base = { path = "../../lib/ui-base" }
+pool = { path = "../../lib/pool" }
+sound = { path = "../../lib/sound" }
+shared-base = { path = "../shared-base" }
+shared-game = { path = "../shared-game" }
+game-interface = { path = "../game-interface" }
+client-render-game = { path = "../client-render-game" }
+game-config = { path = "../game-config" }
+editor = { path = "../editor" }
+#ddnet = { git = "https://gitlab.com/Jupstar/twgame", rev = "4e5bd44981a2b27d9b46d0db0442f84e81c90cb8" }
+wasmer = { version = "4.2.8", disable-default = true, features = ["sys", "cranelift"] }
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+rayon = "1.10.0"
+egui = { version = "0.27.2", features = ["serde"] }
+libloading = "0.8.3"
+url = { version = "2.5.0", features = ["serde"] }

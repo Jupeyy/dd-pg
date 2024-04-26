@@ -1,0 +1,84 @@
+use egui::Button;
+use map::skeleton::resources::MapResourceRefSkeleton;
+use ui_base::types::UIState;
+
+use crate::map::EditorMapPropsUiWindow;
+
+#[derive(Debug)]
+pub enum ResourceSelectionMode {
+    Hovered(Option<usize>),
+    Clicked(Option<usize>),
+}
+
+#[derive(Debug, Default)]
+pub struct ResourceSelectionResult {
+    pub mode: Option<ResourceSelectionMode>,
+
+    pub pointer_was_outside: bool,
+}
+
+pub fn render<R>(
+    ui: &mut egui::Ui,
+    pointer_is_used: &mut bool,
+    resources: &Vec<MapResourceRefSkeleton<R>>,
+    resource_selector: &mut EditorMapPropsUiWindow,
+    ui_state: &mut UIState,
+    main_frame_only: bool,
+) -> ResourceSelectionResult {
+    let mut resource_res = ResourceSelectionResult::default();
+
+    let mut window = egui::Window::new("Resource selector")
+        .resizable(false)
+        .collapsible(false);
+
+    if main_frame_only {
+        window = window.fixed_rect(resource_selector.rect);
+    } else {
+        window = window.default_rect(resource_selector.rect);
+    }
+
+    let window_res = window.show(ui.ctx(), |ui| {
+        let res = ui.add(Button::new("None"));
+        if res.clicked() {
+            resource_res.mode = Some(ResourceSelectionMode::Clicked(None));
+        } else if res.hovered() {
+            resource_res.mode = Some(ResourceSelectionMode::Hovered(None));
+        }
+        for (index, res) in resources.iter().enumerate() {
+            let res = ui.add(Button::new(&res.def.name));
+            if res.clicked() {
+                resource_res.mode = Some(ResourceSelectionMode::Clicked(Some(index)));
+            } else if res.hovered() {
+                resource_res.mode = Some(ResourceSelectionMode::Hovered(Some(index)));
+            }
+        }
+    });
+
+    *pointer_is_used |= if let Some(window_res) = &window_res {
+        let intersected = ui.input(|i| {
+            if i.pointer.primary_down() {
+                Some((
+                    !window_res.response.rect.intersects({
+                        let min = i.pointer.interact_pos().unwrap_or_default().into();
+                        let max = min;
+                        [min, max].into()
+                    }),
+                    i.pointer.primary_pressed(),
+                ))
+            } else {
+                None
+            }
+        });
+        resource_res.pointer_was_outside =
+            intersected.is_some_and(|(outside, clicked)| outside && clicked);
+        intersected.is_some_and(|(outside, _)| !outside)
+    } else {
+        false
+    };
+
+    if window_res.is_some() && !main_frame_only {
+        resource_selector.rect = window_res.as_ref().unwrap().response.rect;
+    }
+
+    resource_res
+}
