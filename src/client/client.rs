@@ -420,10 +420,10 @@ impl ClientNativeImpl {
                                 .unwrap()
                                 .chat_input_active = false;
                         }
-                        ChatEvent::PlatformOutput(mut output) => {
+                        ChatEvent::PlatformOutput(output) => {
                             // no matter what egui reports, we don't want a cursor ingame
-                            output.cursor_icon = CursorIcon::None;
-                            self.inp_manager.handle_platform_output(native, output);
+                            self.inp_manager
+                                .handle_platform_output(native, output, true);
                         }
                     }
                 }
@@ -455,10 +455,18 @@ impl ClientNativeImpl {
         }
         if let Some(editor) = &mut self.editor {
             if let Some(output) = editor.render(
-                self.inp_manager.take_inp().egui.unwrap_or_default(),
+                if self.console.ui.ui_state.is_ui_open {
+                    Default::default()
+                } else {
+                    self.inp_manager.take_inp().egui.unwrap_or_default()
+                },
                 &self.config.engine,
             ) {
-                self.inp_manager.handle_platform_output(native, output);
+                self.inp_manager.handle_platform_output(
+                    native,
+                    output,
+                    self.console.ui.ui_state.is_ui_open,
+                );
             }
         } else {
             self.render_game(native);
@@ -497,7 +505,11 @@ impl ClientNativeImpl {
                     native.borrow_window(),
                     true,
                 ) {
-                    self.inp_manager.handle_platform_output(native, output);
+                    self.inp_manager.handle_platform_output(
+                        native,
+                        output,
+                        self.console.ui.ui_state.is_ui_open,
+                    );
                 }
                 let ui_events = self.ui_events.take();
                 for ui_event in ui_events {
@@ -580,7 +592,7 @@ impl ClientNativeImpl {
             );
             self.handle_console_events(native, events);
             self.inp_manager
-                .handle_platform_output(native, platform_output);
+                .handle_platform_output(native, platform_output, false);
         }
 
         // fps (& debug)
@@ -935,12 +947,13 @@ impl FromNativeImpl for ClientNativeImpl {
             sys: &sys,
             string_pool: &mut self.string_pool,
         });
+        let has_input = !self.ui_manager.ui.ui_state.is_ui_open
+            && !self.console.ui.ui_state.is_ui_open
+            && self.editor.is_none();
         if let Game::Active(game) = &mut self.client {
-            let has_input = !self.ui_manager.ui.ui_state.is_ui_open
-                && !self.console.ui.ui_state.is_ui_open
-                && self.editor.is_none();
             if has_input {
                 native.toggle_cursor(false);
+                self.inp_manager.set_last_known_cursor(CursorIcon::None);
 
                 let evs = self.inp_manager.handle_player_binds(
                     &mut game.client_data.local_players,

@@ -92,6 +92,8 @@ pub enum InputHandlingEvent {
 pub struct InputHandling {
     pub state: egui_winit::State,
 
+    last_known_cursor: Option<CursorIcon>,
+
     inp: Input,
 }
 
@@ -109,6 +111,7 @@ impl InputHandling {
                 Some(window.scale_factor() as f32),
                 None,
             ),
+            last_known_cursor: None,
             inp: Input::new(),
         }
     }
@@ -131,11 +134,24 @@ impl InputHandling {
         self.inp.egui = Some(self.state.take_egui_input(window));
     }
 
+    pub fn set_last_known_cursor(&mut self, cursor: CursorIcon) {
+        self.last_known_cursor = Some(cursor);
+    }
+
+    /// `apply_latest_known_cursor` is good if the ui that calls this
+    /// actually doesn't have input focus right now
     pub fn handle_platform_output(
         &mut self,
         native: &mut dyn NativeImpl,
-        platform_output: egui::PlatformOutput,
+        mut platform_output: egui::PlatformOutput,
+        apply_latest_known_cursor: bool,
     ) {
+        if apply_latest_known_cursor {
+            if let Some(cursor) = self.last_known_cursor {
+                platform_output.cursor_icon = cursor;
+            }
+        }
+        self.last_known_cursor = Some(platform_output.cursor_icon);
         native.toggle_cursor(!matches!(platform_output.cursor_icon, CursorIcon::None));
         self.state
             .handle_platform_output(native.borrow_window(), platform_output);
