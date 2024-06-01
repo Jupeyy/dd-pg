@@ -1,0 +1,16 @@
+[package]
+name = "accounts-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+argon2 = "0.5.3"
+ed25519-dalek = { version = "2.1.1", features = ["serde", "rand_core", "pkcs8", "pem"] }
+aes-gcm-siv = "0.11.1"
+rand = { version = "0.8.5", features = ["getrandom"], default-features = false }
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+serde = { version = "1.0.198", features = ["derive"] }
+email_address = { version = "0.2.4", features = ["serde"] }
+generic-array = { version = "0.14.7", features = ["serde"] }
+rcgen = { version = "0.13.1" }
+zxcvbn = "3.0.1"

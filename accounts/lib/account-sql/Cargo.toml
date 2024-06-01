@@ -1,0 +1,9 @@
+[package]
+name = "account-sql"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sqlx = { version = "0.7.4", features = ["mysql", "runtime-tokio"] }
+async-trait = "0.1.80"
+anyhow = { version = "1.0.82", features = ["backtrace"] }

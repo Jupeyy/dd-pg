@@ -1,0 +1,36 @@
+[package]
+name = "server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-fs = { path = "../../lib/base-fs" }
+base-http = { path = "../../lib/base-http" }
+base-log = { path = "../../lib/base-log" }
+base-io = { path = "../../lib/base-io" }
+base-io-traits = { path = "../../lib/base-io-traits" }
+network = { path = "../../lib/network" }
+bin-patch = { path = "../../lib/bin-patch" }
+config = { path = "../../lib/config" }
+config-fs = { path = "../../lib/config-fs" }
+pool = { path = "../../lib/pool" }
+
+server-database = { path = "../server-database" }
+shared-base = { path = "../shared-base" }
+shared-game = { path = "../shared-game" }
+game-interface = { path = "../game-interface" }
+shared-network = { path = "../shared-network" }
+shared = { path = "../shared" }
+map = { path = "../map" }
+game-config = { path = "../game-config" }
+game-config-fs = { path = "../game-config-fs" }
+map-convert-lib = { path = "../map-convert-lib" }
+client-accounts = { path = "../client-accounts" }
+
+rayon = "1.10.0"
+rcgen = "0.13.1"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+difference = "2.0"
+rand = { version = "0.8.5", features = ["std_rng"], default-features = false }

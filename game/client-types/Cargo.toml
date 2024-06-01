@@ -1,0 +1,19 @@
+[package]
+name = "client-types"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pool = { path = "../../lib/pool" }
+config = { path = "../../lib/config" }
+shared-base = { path = "../shared-base" }
+game-config = { path = "../game-config" }
+game-interface = { path = "../game-interface" }
+
+serde = "1.0.198"
+serde_with = "3.7.0"
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+logos = "0.14.0"
+snailquote = "0.3.1"
+regex = "1.10.4"
+thiserror = "1.0.59"

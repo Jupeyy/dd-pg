@@ -1,0 +1,17 @@
+[package]
+name = "account-game-server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+accounts-base = { path = "../accounts-base" }
+account-client = { path = "../account-client" }
+account-sql = { path = "../account-sql" }
+
+sqlx = { version = "0.7.4", features = ["mysql", "runtime-tokio"] }
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+async-trait = "0.1.80"
+ed25519-dalek = { version = "2.1.1", features = ["serde", "rand_core"] }
+serde_json = "1.0.116"
+serde = { version = "1.0.198", features = ["derive"] }
+thiserror = "1.0.59"

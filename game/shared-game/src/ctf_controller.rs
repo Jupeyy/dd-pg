@@ -1,0 +1,63 @@
+pub mod ctf_controller {
+    use game_interface::events::GameFlagEventSound;
+    use hiarc::Hiarc;
+    use math::math::distance;
+
+    use crate::{
+        entities::{
+            character::character,
+            flag::flag::{Flag, Flags},
+        },
+        events::events::FlagEvent,
+        simulation_pipe::simulation_pipe::{SimulationEntityEvents, SimulationEventWorldEntity},
+        world::world::GameWorld,
+    };
+
+    #[derive(Debug, Hiarc, Default)]
+    pub struct CtfController {}
+
+    impl CtfController {
+        fn check_flags(events: &SimulationEntityEvents, flags: &mut Flags, other_flags: &Flags) {
+            for (_, flag) in flags.iter_mut() {
+                if let Some(carrier) = flag.core.carrier {
+                    for other_flag in other_flags.values() {
+                        if other_flag.core.carrier.is_none()
+                            && other_flag.core.pos == other_flag.core.spawn_pos
+                            && distance(&flag.core.pos, &other_flag.core.pos)
+                                < Flag::PHYSICAL_SIZE + character::PHYSICAL_SIZE
+                        {
+                            flag.reset();
+                            events.push(SimulationEventWorldEntity::Flag {
+                                id: flag.base.game_element_id,
+                                ev: FlagEvent::Capture {
+                                    pos: flag.core.pos,
+                                    character_id: carrier,
+                                },
+                            });
+                            events.push(SimulationEventWorldEntity::Flag {
+                                id: flag.base.game_element_id,
+                                ev: FlagEvent::Sound {
+                                    pos: flag.core.pos / 32.0,
+                                    ev: GameFlagEventSound::Capture,
+                                },
+                            });
+                        }
+                    }
+                }
+            }
+        }
+
+        pub fn tick(world: &mut GameWorld) {
+            Self::check_flags(
+                &world.simulation_events,
+                &mut world.red_flags,
+                &world.blue_flags,
+            );
+            Self::check_flags(
+                &world.simulation_events,
+                &mut world.blue_flags,
+                &world.red_flags,
+            );
+        }
+    }
+}

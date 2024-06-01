@@ -1,0 +1,14 @@
+[package]
+name = "graphics-types"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../math" }
+pool = { path = "../pool", features = ["enable_hiarc"] }
+hiarc = { path = "../hiarc", features = ["enable_hashlink"] }
+num-derive = "0.4.2"
+num-traits = "0.2.18"
+bitflags = { version = "2.5.0", features = ["serde"] }
+bincode = "2.0.0-rc.3"
+serde = "1.0.198"

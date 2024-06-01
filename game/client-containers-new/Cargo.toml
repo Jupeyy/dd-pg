@@ -1,0 +1,32 @@
+[package]
+name = "client-containers-new"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-io-traits = { path = "../../lib/base-io-traits" }
+base-io = { path = "../../lib/base-io" }
+graphics-types = { path = "../../lib/graphics-types" }
+graphics = { path = "../../lib/graphics" }
+sound = { path = "../../lib/sound" }
+image = { path = "../../lib/image" }
+hiarc = { path = "../../lib/hiarc", features = ["derive", "enable_rayon", "enable_url", "enable_fixed", "enable_either"] }
+math = { path = "../../lib/math" }
+shared-base = { path = "../shared-base" }
+game-interface = { path = "../game-interface" }
+arrayvec = "0.7.4"
+fixed = "1.27.0"
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+rayon = "1.10.0"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+num-derive = "0.4.2"
+num-traits = "0.2.18"
+strum_macros = "0.26.2"
+tar = "0.4.40"
+url = "2.5.0"
+tokio = { version = "1.37.0", features = ["sync"] }
+serde = { version = "1.0.198", features = ["derive"] }
+serde_json = "1.0.116"
+log = "0.4.21"
+either = "1.11.0"

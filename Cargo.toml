@@ -1,0 +1,201 @@
+[workspace]
+members = [
+    "lib/av-encoder",
+    "lib/cache",
+    "lib/wasm-runtime",
+    "lib/wasm-runtime-types",
+    "lib/wasm-logic-fs",
+    "lib/wasm-logic-http",
+    "lib/wasm-logic-graphics",
+    "lib/ui-wasm-manager",
+    "lib/native",
+    "lib/network",
+    "lib/base",
+    "lib/base-fs",
+    "lib/base-http",
+    "lib/base-io-traits",
+    "lib/base-io",
+    "lib/base-log",
+    "lib/config",
+    "lib/config-fs",
+    "lib/config-macro",
+    "lib/hiarc",
+    "lib/hiarc-macro",
+    "lib/graphics",
+    "lib/graphics-backend",
+    "lib/graphics-backend-traits",
+    "lib/graphics-types",
+    "lib/graphics-base-traits",
+    "lib/api",
+    "lib/api-wasm-macros",
+    "lib/api-macros",
+    "lib/api-ui",
+    "lib/image",
+    "lib/pool",
+    "lib/sound",
+    "lib/sql",
+    "lib/ui-base",
+    "lib/ui-traits",
+    "examples/wasm-modules/actionfeed",
+    "examples/wasm-modules/ui",
+    "examples/wasm-modules/state",
+    "examples/wasm-modules/render-game",
+    "examples/wasm-modules/scoreboard",
+    "examples/wasm-modules/chat",
+    "examples/wasm-modules/console",
+    "examples/wasm-modules/connecting",
+    "examples/wasm-modules/graphics",
+    "examples/wasm-modules/mainmenu",
+    "examples/wasm-modules/ingame_menu",
+    "src/server-bin",
+    "src/emoticon-convert",
+    "src/game-convert",
+    "src/skin-convert",
+    "src/part-convert",
+    "src/master-server",
+    "game/client-extra",
+    "game/client-map",
+    "game/client-render-base",
+    "game/client-render",
+    "game/client-types",
+    "game/client-containers",
+    "game/client-containers-new",
+    "game/client-ui",
+    "game/server",
+    "game/server-database",
+    "game/shared-base",
+    "game/shared-game",
+    "game/shared-network",
+    "game/shared",
+    "game/api-state",
+    "game/api-ui-game",
+    "game/master-server-types",
+    "game/game-config",
+    "game/game-config-fs",
+    "game/client-render-game",
+    "game/client-console",
+    "game/api-render-game",
+    "game/client-demo", "game/editor", "src/map-convert", "game/map-convert-lib", "lib/sound-backend",
+    "lib/wasm-logic-sound", "game/api-editor",
+    "examples/wasm-modules/editor_wasm",
+    "examples/lib-modules/editor-lib",
+    "game/egui-timeline",
+    "game/game-interface", "game/map", "lib/bin-patch",
+    "accounts/lib/accounts-base",
+    "accounts/bin/account-server",
+    "accounts/lib/account-client",
+    "accounts/lib/account-game-server", "accounts/lib/account-sql", "game/binds", "accounts/lib/client-http-fs", "accounts/lib/client-reqwest", "game/client-accounts",
+]
+
+[package]
+name = "ddnet-playground"
+description = "DDraceNetwork, a free cooperative platformer game"
+version = "0.1.0"
+edition = "2021"
+publish = false
+license = "Zlib"
+
+[dependencies]
+ui-wasm-manager = { path = "lib/ui-wasm-manager" }
+native = { path = "lib/native" }
+network = { path = "lib/network" }
+math = { path = "lib/math" }
+base = { path = "lib/base" }
+base-fs = { path = "lib/base-fs" }
+base-http = { path = "lib/base-http" }
+base-io = { path = "lib/base-io" }
+base-log = { path = "lib/base-log" }
+config = { path = "lib/config" }
+config-fs = { path = "lib/config-fs" }
+graphics = { path = "lib/graphics" }
+graphics-backend = { path = "lib/graphics-backend" }
+graphics-types = { path = "lib/graphics-types" }
+image = { path = "lib/image" }
+sound = { path = "lib/sound" }
+sound-backend = { path = "lib/sound-backend" }
+ui-base = { path = "lib/ui-base" }
+ui-traits = { path = "lib/ui-traits" }
+pool = { path = "lib/pool" }
+bin-patch = { path = "lib/bin-patch" }
+game-config = { path = "game/game-config" }
+game-config-fs = { path = "game/game-config-fs" }
+client-accounts = { path = "game/client-accounts" }
+client-render-base = { path = "game/client-render-base" }
+client-render-game = { path = "game/client-render-game" }
+client-console = { path = "game/client-console" }
+client-map = { path = "game/client-map" }
+client-types = { path = "game/client-types" }
+client-containers-new = { path = "game/client-containers-new" }
+client-ui = { path = "game/client-ui" }
+client-demo = { path = "game/client-demo" }
+server = { path = "game/server" }
+shared-base = { path = "game/shared-base" }
+game-interface = { path = "game/game-interface" }
+shared-network = { path = "game/shared-network" }
+binds = { path = "game/binds" }
+shared = { path = "game/shared" }
+editor = { path = "game/editor" }
+egui-winit = { version = "0.27.2", default-features = false, features = ["x11", "arboard"] }
+winit = { version = "0.29.15", default-features = false, features = ["x11", "wayland"] }
+raw-window-handle = "0.6.1"
+tokio = { version = "1.37.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+num = "0.4.2"
+arrayvec = "0.7.4"
+egui = { version = "0.27.2", features = ["serde"] }
+rayon = "1.10.0"
+bincode = { version = "2.0.0-rc.3", features = ["serde"] }
+bytes = "1.6.0"
+egui_extras = "0.27.2"
+emath = "0.27.2"
+fixed = "1.27.0"
+serde = "1.0.198"
+serde-value = "0.7.0"
+serde_json = "1.0.116"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+anyhow = { version = "1.0.82", features = ["backtrace"] }
+parking_lot = "0.12.1"
+thread-priority = "1.0.0"
+difference = "2.0"
+hiarc = { path = "lib/hiarc", features = ["derive"] }
+trybuild = "1.0"
+env_logger = "0.11.3"
+rand = { version = "0.8.5", features = ["std_rng"], default-features = false }
+either = "1.11.0"
+url = "2.5.0"
+log = "0.4.21"
+
+[dev-dependencies]
+textplots = "0.8.6"
+rgb = "0.8.37"
+
+# super slow in debug
+[profile.dev.package.blake3]
+opt-level = 3
+[profile.dev.package.rav1e]
+opt-level = 3
+[profile.dev.package.matroska]
+opt-level = 3
+[profile.dev.package.av-format]
+opt-level = 3
+[profile.dev.rsa]
+opt-level = 3
+[profile.dev.rand]
+opt-level = 3
+
+[features]
+bundled_data_dir = ["base-fs/bundled_data_dir"]
+
+[profile.release]
+lto = false
+opt-level = 3
+codegen-units = 1
+strip = false
+
+[package.metadata.bundle]
+short_description = "DDraceNetwork, a free cooperative platformer game"
+long_description = """
+DDraceNetwork (DDNet) is an actively maintained version of DDRace, a Teeworlds modification with a unique cooperative gameplay.
+Help each other play through custom maps, compete against the best in international tournaments, design your own maps, or run your own server.
+The official servers are around the world.
+All ranks made on official servers are available worldwide and you can collect points!
+"""

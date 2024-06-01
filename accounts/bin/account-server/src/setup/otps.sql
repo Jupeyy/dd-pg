@@ -1,0 +1,5 @@
+CREATE TABLE otps (
+    otp BINARY(32) NOT NULL,
+    valid_until DATETIME NOT NULL,
+    UNIQUE KEY(otp)
+) ENGINE = MEMORY;
