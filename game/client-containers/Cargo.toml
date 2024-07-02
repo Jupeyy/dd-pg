@@ -1,0 +1,26 @@
+[package]
+name = "client-containers"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io-traits = { path = "../../lib/base-io-traits" }
+base-io = { path = "../../lib/base-io" }
+base-log = { path = "../../lib/base-log" }
+graphics-types = { path = "../../lib/graphics-types" }
+graphics = { path = "../../lib/graphics" }
+sound = { path = "../../lib/sound" }
+image = { path = "../../lib/image" }
+hiarc = { path = "../../lib/hiarc", features = ["derive"] }
+math = { path = "../../lib/math" }
+shared-base = { path = "../shared-base" }
+game-interface = { path = "../game-interface" }
+arrayvec = "0.7.4"
+async-trait = "0.1.80"
+fixed = "1.27.0"
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+rayon = "1.10.0"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+num-derive = "0.4.2"
+num-traits = "0.2.19"
+strum_macros = "0.26.4"

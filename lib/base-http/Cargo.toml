@@ -1,0 +1,20 @@
+[package]
+name = "base-http"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+base = { path = "../base" }
+base-io-traits = { path = "../base-io-traits" }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+axum = "0.7.5"
+bytes = "1.6.0"
+reqwest = { version = "0.12.5" }
+tokio = { version = "1.38.0", features = ["rt-multi-thread", "sync"] }
+url = "2.5.2"
+async-trait = "0.1.80"
+
+[dev-dependencies]
+base = { path = "../base" }

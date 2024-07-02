@@ -1,0 +1,27 @@
+[package]
+name = "accounts-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+argon2 = "0.5.3"
+ed25519-dalek = { version = "2.1.1", features = ["serde", "rand_core", "pkcs8", "pem"] }
+aes-gcm-siv = "0.11.1"
+rand = { version = "0.8.5", features = ["getrandom"], default-features = false }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+serde = { version = "1.0.203", features = ["derive"] }
+email_address = { version = "0.2.4", features = ["serde"] }
+generic-array = { version = "1.0.0", features = ["serde"] }
+rcgen = { version = "0.13.1" }
+zxcvbn = "3.0.1"
+base64 = "0.22.1"
+chrono = { version = "0.4.38", features = ["serde"] }
+x509-cert = { version = "0.2.5" }
+spki = { version = "0.7.3", features = ["fingerprint"] }
+const-oid = "0.9.6"
+der = { version = "0.7.9", features = ["derive"] }
+ecdsa = { version = "0.16.9", features = ["digest", "pem"] }
+p256 = "0.13.2"
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+machine-uid = "0.5.2"

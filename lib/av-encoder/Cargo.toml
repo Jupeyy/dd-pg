@@ -1,0 +1,14 @@
+[package]
+name = "av-encoder"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-log = { path = "../base-log" }
+graphics-backend = { path = "../graphics-backend" }
+graphics-backend-traits = { path = "../graphics-backend-traits" }
+hiarc = { path = "../hiarc", features = ["derive"] }
+matroska = { git = "https://github.com/rust-av/matroska" }
+rav1e = { version = "0.7.1", default-features = false, features = ["threading"] }
+av-data = "0.4.2"
+av-format = "0.7"

@@ -1,0 +1,15 @@
+[package]
+name = "bin-patch"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+zstd = { version = "0.13", features = ["experimental"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+
+[dev-dependencies]
+bidiff = "1.0.0"
+qbsdiff = "1.4.2"
+bsdiff = "0.2.0"
+brotli = "6.0.0"
+base = { path = "../base" }

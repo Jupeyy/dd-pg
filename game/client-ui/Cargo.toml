@@ -1,0 +1,37 @@
+[package]
+name = "client-ui"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+client-types = { path = "../client-types" }
+client-containers-new = { path = "../client-containers-new" }
+client-render-base = { path = "../client-render-base" }
+master-server-types = { path = "../master-server-types" }
+shared-base = { path = "../shared-base" }
+game-interface = { path = "../game-interface" }
+game-config = { path = "../game-config" }
+base-io = { path = "../../lib/base-io" }
+config = { path = "../../lib/config" }
+ui-base = { path = "../../lib/ui-base" }
+ui-traits = { path = "../../lib/ui-traits" }
+math = { path = "../../lib/math" }
+sound = { path = "../../lib/sound" }
+graphics = { path = "../../lib/graphics" }
+graphics-types = { path = "../../lib/graphics-types" }
+hiarc = { path = "../../lib/hiarc", features = ["derive"] }
+
+egui = { version = "0.27.2", features = ["serde"] }
+egui_extras = "0.27.2"
+fuzzy-matcher = "0.3.7"
+serde_json = "1.0.119"
+serde = { version = "1.0.203", features = ["derive"] }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+rayon = "1.10.0"
+log = "0.4.22"
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+async-trait = "0.1.80"
+email_address = { version = "0.2.4", features = ["serde"] }
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+accounts-base = { path = "../../accounts/lib/accounts-base" }

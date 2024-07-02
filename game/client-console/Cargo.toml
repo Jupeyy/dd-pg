@@ -1,0 +1,22 @@
+[package]
+name = "client-console"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+binds = { path = "../binds" }
+client-ui = { path = "../client-ui" }
+client-types = { path = "../client-types" }
+game-config = { path = "../game-config" }
+client-render = { path = "../client-render" }
+base = { path = "../../lib/base" }
+config = { path = "../../lib/config" }
+native = { path = "../../lib/native" }
+graphics = { path = "../../lib/graphics" }
+hiarc = { path = "../../lib/hiarc", features = ["derive"] }
+ui-base = { path = "../../lib/ui-base" }
+
+egui = { version = "0.27.2", features = ["serde"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }

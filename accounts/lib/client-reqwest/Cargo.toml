@@ -1,0 +1,13 @@
+[package]
+name = "client-reqwest"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+client-http-fs = { path = "../client-http-fs" }
+account-client = { path = "../account-client" }
+
+async-trait = "0.1.80"
+url = { version = "2.5.2", features = ["serde"] }
+reqwest = { version = "0.12.5" }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
