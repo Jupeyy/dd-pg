@@ -1,0 +1,30 @@
+[package]
+name = "client-render-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+config = { path = "../../lib/config" }
+graphics-backend-traits = { path = "../../lib/graphics-backend-traits" }
+graphics = { path = "../../lib/graphics" }
+graphics-types = { path = "../../lib/graphics-types" }
+hiarc = { path = "../../lib/hiarc", features = ["derive"] }
+pool = { path = "../../lib/pool" }
+sound = { path = "../../lib/sound" }
+
+client-containers = { path = "../client-containers" }
+shared-base = { path = "../shared-base" }
+map = { path = "../map" }
+game-config = { path = "../game-config" }
+game-interface = { path = "../game-interface" }
+
+serde = "1.0.203"
+rayon = "1.10.0"
+num-derive = "0.4.2"
+num-traits = "0.2.19"
+bincode = { version = "2.0.0-rc.3", features = ["serde"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+time = { version = "0.3.36", features = ["serde"] }
+fixed = "1.27.0"
+log = "0.4.22"

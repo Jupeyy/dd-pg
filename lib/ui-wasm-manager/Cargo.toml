@@ -1,0 +1,27 @@
+[package]
+name = "ui-wasm-manager"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../math" }
+base-io-traits = { path = "../base-io-traits" }
+base-io = { path = "../base-io" }
+config = { path = "../config" }
+cache = { path = "../cache" }
+native = { path = "../native" }
+wasm-runtime = { path = "../wasm-runtime" }
+wasm-logic-fs = { path = "../wasm-logic-fs" }
+wasm-logic-http = { path = "../wasm-logic-http" }
+wasm-logic-graphics = { path = "../wasm-logic-graphics" }
+wasm-logic-sound = { path = "../wasm-logic-sound" }
+graphics = { path = "../graphics" }
+graphics-backend = { path = "../graphics-backend" }
+sound = { path = "../sound" }
+ui-base = { path = "../ui-base" }
+ui-traits = { path = "../ui-traits" }
+hiarc = { path = "../hiarc", features = ["derive"] }
+egui = { version = "0.27.2", features = ["serde"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+wasmer = { version = "4.3.2", disable-default = true, features = ["sys", "cranelift"] }
+serde = "1.0.203"

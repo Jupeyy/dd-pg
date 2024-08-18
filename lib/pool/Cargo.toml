@@ -1,0 +1,17 @@
+[package]
+name = "pool"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+hiarc = { path = "../hiarc", features = ["enable_parking_lot", "derive"], optional = true }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+bincode = { version = "2.0.0-rc.3", features = ["serde"] }
+serde = { version = "1.0.203", features = ["derive", "rc"] }
+parking_lot = "0.12.3"
+rustc-hash = "2.0.0"
+
+[features]
+enable_hiarc = ["hiarc"]

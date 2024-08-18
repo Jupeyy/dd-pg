@@ -1,0 +1,22 @@
+[package]
+name = "client-accounts"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io-traits = { path = "../../lib/base-io-traits" }
+base-io = { path = "../../lib/base-io" }
+hiarc = { path = "../../lib/hiarc", features = ["derive"] }
+
+client-ui = { path = "../client-ui" }
+http-accounts = { path = "../http-accounts" }
+
+accounts-shared = { path = "../../accounts/lib/accounts-shared" }
+account-client = { path = "../../accounts/lib/account-client" }
+client-http-fs = { path = "../../accounts/lib/client-http-fs" }
+
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+async-trait = "0.1.80"
+url = { version = "2.5.2", features = ["serde"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+email_address = { version = "0.2.4", features = ["serde"] }

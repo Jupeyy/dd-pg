@@ -1,0 +1,19 @@
+INSERT INTO
+    account_tokens (
+        token,
+        valid_until,
+        account_id
+    )
+VALUES
+    (
+        ?,
+        DATE_ADD(UTC_TIMESTAMP(), INTERVAL 15 MINUTE),
+        (
+            SELECT
+                id
+            FROM
+                account
+            WHERE
+                email = ?
+        )
+    );

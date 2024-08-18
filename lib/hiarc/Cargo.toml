@@ -1,0 +1,46 @@
+[package]
+name = "hiarc"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+thiserror = "1.0.61"
+
+hiarc-macro = { path = "../hiarc-macro", optional = true }
+
+parking_lot = { version = "0.12.3", default-features = false, optional = true }
+spin = { version = "0.9.8", default-features = false, features = ["spin_mutex", "rwlock"], optional = true }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", default-features = false, features = ["serde", "serde_impl"], optional = true }
+tokio = { version = "1.38.0", default-features = false, features = ["sync"], optional = true }
+anyhow = { version = "1.0.86", default-features = false, optional = true }
+egui = { version = "0.27.2", default-features = false, optional = true }
+fixed = { version = "1.27.0", default-features = false, optional = true }
+rayon = { version = "1.10.0", default-features = false, optional = true }
+time = { version = "0.3.36", default-features = false, optional = true }
+arc-swap = { version = "1.7.1", default-features = false, optional = true }
+kira = { version = "0.9.3", default-features = false, optional = true }
+tinyset = { version = "0.4.15", default-features = false, optional = true }
+url = { version = "2.5.2", default-features = false, optional = true }
+either = { version = "1.13.0", default-features = false, optional = true }
+ascii = { version = "1.1.0", default-features = false, optional = true }
+rustc-hash = { version = "2.0.0", default-features = false, optional = true }
+
+[features]
+derive = ["hiarc-macro"]
+
+enable_parking_lot = ["parking_lot"]
+enable_spin = ["spin"]
+enable_hashlink = ["hashlink"]
+enable_tokio = ["tokio"]
+enable_anyhow = ["anyhow"]
+enable_egui = ["egui"]
+enable_fixed = ["fixed"]
+enable_rayon = ["rayon"]
+enable_time = ["time"]
+enable_arc_swap = ["arc-swap"]
+enable_kira = ["kira"]
+enable_tinyset = ["tinyset"]
+enable_url = ["url"]
+enable_either = ["either"]
+enable_ascii = ["ascii"]
+enable_rustc_hash = ["rustc-hash"]

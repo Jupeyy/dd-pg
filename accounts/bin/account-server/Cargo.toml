@@ -1,0 +1,45 @@
+[package]
+name = "account-server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+accounts-types = { path = "../../lib/accounts-types" }
+accounts-shared = { path = "../../lib/accounts-shared" }
+account-sql = { path = "../../lib/account-sql" }
+
+tokio = { version = "1.38.0", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+axum = "0.7.5"
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+# https://github.com/launchbadge/sqlx/issues/2636
+sqlx = { version = "=0.6.3", features = ["mysql", "any", "runtime-tokio-rustls", "chrono"] }
+email_address = { version = "0.2.4", features = ["serde"] }
+ed25519-dalek = { version = "2.1.1", features = ["serde", "pkcs8"] }
+async-trait = "0.1.80"
+argon2 = "0.5.3"
+serde_json = "1.0.119"
+parking_lot = "0.12.3"
+lettre = "0.11.7"
+serde = { version = "1.0.203", features = ["derive"] }
+base64 = "0.22.1"
+url = { version = "2.5.2", features = ["serde"] }
+log = "0.4.22"
+clap = { version = "4.5.8", features = ["derive", "cargo"] }
+env_logger = "0.11.3"
+rcgen = { version = "0.13.1" }
+x509-cert = { version = "0.2.5", features = ["builder"] }
+ecdsa = { version = "0.16.9", features = ["digest", "pem"] }
+p256 = "0.13.2"
+rand = { version = "0.8.5", features = ["getrandom"], default-features = false }
+sha2 = { version = "0.10", features = ["oid"] }
+der = { version = "0.7.9", features = ["derive"] }
+chrono = { version = "0.4.38", features = ["serde"] }
+
+[dev-dependencies]
+account-client = { path = "../../lib/account-client" }
+account-game-server = { path = "../../lib/account-game-server" }
+client-reqwest = { path = "../../lib/client-reqwest" }
+
+regex = "1.10.5"
+tempfile = "3.10.1"
+reqwest = { version = "0.12.5" }

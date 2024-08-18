@@ -1,0 +1,68 @@
+note: this is for components that allocate some kind of object
+
+##component wise (in hiararchical order):
+system:
+    level 0:
+    log, time
+    level 1:
+    config
+    level 2:
+    fs, io-batcher, other io, network, pools
+    level 3:
+    cache
+backends:
+    level 0:
+    winit/native, sound, sql, wasm-runtime
+    level 1:
+    vulkan backend instance
+    level 2:
+    vulkan backend device
+    level 3:
+    vulkan backend swapchain, winit/window
+    level 4:
+    rest of vulkan backend
+frontend-backend communication:
+    level 0:
+    graphics, sound(frontend)
+    level 1:
+    wasm-graphics, wasm-fs, av-encoder
+frontend:
+    level 0:
+    communication layer/interface for physics and rendering,
+    communication layer/interface for physics and sql,
+    communication layer/interface for physics and network,
+    input handling + binds etc.,
+    demos,
+    ghosts,
+    level 1:
+    camera, containers(skin etc.)
+    level 2:
+    game physics, map render, tee render, effects render, weapon render, entities render
+    level 3:
+    ui
+
+
+##details
+vulkan backend:
+    level 0:
+    instance
+    level 1:
+    device
+    level 2:
+    swapchain, memory
+    level 3:
+    buffers, images
+    level 4:
+    command pools etc.
+    level 5:
+    command buffers
+
+graphics:
+    level 0:
+    graphics-backend (not the graphics-library backend)
+    level 1:
+    graphics-stream-handle (streamed vertices)
+    level 2:
+    graphics-texture-handle, graphics-buffer-handle
+
+

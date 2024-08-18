@@ -1,0 +1,34 @@
+[package]
+name = "network"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+base-log = { path = "../base-log" }
+pool = { path = "../pool" }
+
+quinn = { git = "https://github.com/Jupeyy/quinn", rev = "190b1f1121566c45d6ba72316b19ad944a7d964d", features = ["ring"] }
+rustls = { version = "0.23", default-features = false, features = ["ring"] }
+rcgen = { version = "0.13.1" }
+x509-cert = { version = "0.2.5" }
+spki = { version = "0.7.3", features = ["fingerprint"] }
+ed25519-dalek = { version = "2.1.1", features = ["serde", "rand_core", "pkcs8", "pem"] }
+rand = { version = "0.8.5", features = ["getrandom"], default-features = false }
+tokio = { version = "1.38.0", features = ["rt-multi-thread", "sync", "time", "macros"] }
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+async-trait = "0.1.80"
+bytes = "1.6.0"
+tokio-tungstenite = { version = "0.23.1", features = ["tokio-rustls", "rustls-tls-webpki-roots"] }
+pollster = "0.3.0"
+futures-util = "0.3.30"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+iprange = "0.6.7"
+ipnet = "2.9.0"
+serde = { version = "1.0.203", features = ["derive"] }
+brotli = "6.0.0"
+slog = "2.7.0"
+zstd = { version = "0.13", features = ["experimental"] }
+log = "0.4.22"
+thiserror = "1.0.61"
