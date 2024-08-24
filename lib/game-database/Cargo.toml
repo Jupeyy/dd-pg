@@ -1,0 +1,12 @@
+[package]
+name = "game-database"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-log = { path = "../base-log" }
+game-database-macros = { path = "../game-database-macros" }
+
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+serde = { version = "1.0.208", features = ["derive"] }
+async-trait = "0.1.81"

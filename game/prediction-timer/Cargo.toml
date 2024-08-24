@@ -1,0 +1,11 @@
+[package]
+name = "prediction-timer"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+
+[dev-dependencies]
+textplots = "0.8.6"
+rgb = "0.8.48"

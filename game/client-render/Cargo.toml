@@ -1,0 +1,20 @@
+[package]
+name = "client-render"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+graphics-types = { path = "../../lib/graphics-types" }
+graphics = { path = "../../lib/graphics" }
+ui-base = { path = "../../lib/ui-base" }
+ui-traits = { path = "../../lib/ui-traits" }
+math = { path = "../../lib/math" }
+game-interface = { path = "../game-interface" }
+shared-base = { path = "../shared-base" }
+client-ui = { path = "../client-ui" }
+client-render-base = { path = "../client-render-base" }
+client-types = { path = "../client-types" }
+client-containers = { path = "../client-containers" }
+
+egui = { git = "https://github.com/emilk/egui", rev = "9a1e358a144b5d2af9d03a80257c34883f57cf0b", features = ["serde"] }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }

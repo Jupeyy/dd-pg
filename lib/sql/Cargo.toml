@@ -1,0 +1,12 @@
+[package]
+name = "sql"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io = { path = "../base-io" }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+# https://github.com/launchbadge/sqlx/issues/2636
+sqlx = { version = "=0.6.3", features = ["mysql", "any", "runtime-tokio-rustls", "chrono"] }
+tokio = { version = "1.39.3", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+url = { version = "2.5.2", features = ["serde"] }

@@ -1,0 +1,9 @@
+[package]
+name = "wasm-logic-fs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io = { path = "../base-io" }
+wasm-runtime-types = { path = "../wasm-runtime-types" }
+wasmer = { version = "4.3.5", disable-default = true, features = ["sys", "cranelift"] }

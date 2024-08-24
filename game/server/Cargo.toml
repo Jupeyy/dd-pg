@@ -1,0 +1,59 @@
+[package]
+name = "server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-fs = { path = "../../lib/base-fs" }
+base-http = { path = "../../lib/base-http" }
+base-log = { path = "../../lib/base-log" }
+base-io = { path = "../../lib/base-io" }
+base-io-traits = { path = "../../lib/base-io-traits" }
+network = { path = "../../lib/network" }
+bin-patch = { path = "../../lib/bin-patch" }
+config = { path = "../../lib/config" }
+config-fs = { path = "../../lib/config-fs" }
+pool = { path = "../../lib/pool" }
+
+sql = { path = "../../lib/sql" }
+game-database = { path = "../../lib/game-database" }
+game-database-backend = { path = "../../lib/game-database-backend" }
+
+shared-base = { path = "../shared-base" }
+shared-game = { path = "../shared-game" }
+game-interface = { path = "../game-interface" }
+shared-network = { path = "../shared-network" }
+map = { path = "../map" }
+game-config = { path = "../game-config" }
+game-config-fs = { path = "../game-config-fs" }
+master-server-types = { path = "../master-server-types" }
+http-accounts = { path = "../http-accounts" }
+
+shared = { path = "../shared", default-features = false }
+map-convert-lib = { path = "../map-convert-lib", optional = true }
+
+account-game-server = { path = "../../accounts/lib/account-game-server" }
+accounts-shared = { path = "../../accounts/lib/accounts-shared" }
+account-client = { path = "../../accounts/lib/account-client" }
+client-http-fs = { path = "../../accounts/lib/client-http-fs" }
+
+chrono = { version = "0.4.38", features = ["serde"] }
+rayon = "1.10.0"
+rcgen = "0.13.1"
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+difference = "2.0"
+rand = { version = "0.8.5", features = ["std_rng"], default-features = false }
+x509-cert = { version = "0.2.5" }
+ed25519-dalek = { version = "2.1.1" }
+bincode = { version = "2.0.0-rc.3", features = ["serde"] }
+serde_json = "1.0.125"
+serde = { version = "1.0.208", features = ["derive"] }
+tokio = { version = "1.39.3", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+log = "0.4.22"
+
+[features]
+legacy = ["map-convert-lib", "shared/legacy"]
+
+default = ["legacy"]

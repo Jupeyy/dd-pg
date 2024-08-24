@@ -1,0 +1,26 @@
+[package]
+name = "base-fs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io-traits = { path = "../base-io-traits" }
+base-log = { path = "../base-log" }
+
+# v5.0.1+ brings a MPL 2.0 dependency, i don't really like this lib anyway
+directories = { version = "=5.0.0" }
+tokio = { version = "1.39.3", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+notify = { version = "6.1.1", default-features = false, features = ["macos_kqueue"] }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+async-trait = "0.1.81"
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+path-slash = "0.2.1"
+path-clean = "1.0.1"
+virtual-fs = { version = "0.15.0", default-features = false, features = ["host-fs"] }
+log = "0.4.22"
+
+include_dir = { version = "0.7.4", optional = true }
+
+
+[features]
+bundled_data_dir = ["include_dir"]

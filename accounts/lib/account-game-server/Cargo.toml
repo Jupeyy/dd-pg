@@ -1,0 +1,19 @@
+[package]
+name = "account-game-server"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+accounts-types = { path = "../accounts-types" }
+accounts-shared = { path = "../accounts-shared" }
+account-client = { path = "../account-client" }
+account-sql = { path = "../account-sql" }
+
+# https://github.com/launchbadge/sqlx/issues/2636
+sqlx = { version = "=0.6.3", features = ["mysql", "any", "runtime-tokio-rustls", "chrono"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+async-trait = "0.1.81"
+ed25519-dalek = { version = "2.1.1", features = ["serde", "rand_core"] }
+serde_json = "1.0.125"
+serde = { version = "1.0.208", features = ["derive"] }
+thiserror = "1.0.63"
