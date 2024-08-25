@@ -1,0 +1,9 @@
+CREATE TABLE record_maps (
+    Map VARCHAR(128) COLLATE utf8mb4_bin NOT NULL,
+    Server VARCHAR(32) COLLATE utf8mb4_bin NOT NULL,
+    Mapper VARCHAR(128) COLLATE utf8mb4_bin NOT NULL,
+    Points INT DEFAULT 0,
+    Stars INT DEFAULT 0,
+    Timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (Map)
+);

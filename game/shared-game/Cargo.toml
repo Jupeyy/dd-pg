@@ -1,0 +1,33 @@
+[package]
+name = "shared-game"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+shared-base = { path = "../shared-base" }
+game-interface = { path = "../game-interface" }
+map = { path = "../map" }
+command-parser = { path = "../command-parser" }
+
+math = { path = "../../lib/math" }
+base = { path = "../../lib/base" }
+base-io = { path = "../../lib/base-io" }
+pool = { path = "../../lib/pool", features = ["enable_hiarc"] }
+hiarc = { path = "../../lib/hiarc", features = ["derive", "enable_hashlink", "enable_rustc_hash"] }
+game-database = { path = "../../lib/game-database" }
+config = { path = "../../lib/config" }
+
+accounts-types = { path = "../../accounts/lib/accounts-types" }
+
+num = "0.4.3"
+num-traits = "0.2.19"
+num-derive = "0.4.2"
+bincode = { features = ["serde"], version = "2.0.0-rc.3" }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+serde = { version = "1.0.208", features = ["derive"] }
+thiserror = "1.0.63"
+log = "0.4.22"
+chrono = { version = "0.4.38", default-features = false, features = ["serde"] }
+serde_json = "1.0.125"
+rustc-hash = "2.0.0"

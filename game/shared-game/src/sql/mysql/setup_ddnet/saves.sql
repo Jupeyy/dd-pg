@@ -1,0 +1,10 @@
+CREATE TABLE record_saves (
+    Savegame TEXT COLLATE utf8mb4_bin NOT NULL,
+    Map VARCHAR(128) COLLATE utf8mb4_bin NOT NULL,
+    Code VARCHAR(128) COLLATE utf8mb4_bin NOT NULL,
+    Timestamp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Server CHAR(4),
+    DDNet7 BOOL DEFAULT FALSE,
+    SaveId VARCHAR(36) DEFAULT NULL,
+    PRIMARY KEY (Map, Code)
+);
