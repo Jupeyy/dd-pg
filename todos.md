@@ -45,6 +45,7 @@
     - emoticons not perfect, since they don't know the exact time they started. 1 tick is always wasted from the time.
     - eye emote and eye emote by ingame events (killing someone) block each other
     - hook interpolation wrong (when other tee is hooked)
+    - should intra tick time for sent input in prediction tick be considered? for smoother interpolation
 
 brainstorming:
     - input "snapshots" to save bandwidth?

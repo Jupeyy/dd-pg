@@ -30,7 +30,8 @@ pub fn default_name(account_id: &AccountId) -> String {
 
 /// Logges in the user.
 /// Might create a new user row if the user didn't exist before.
-/// Returns `true` if an account was created.
+/// Returns `true` if an account was created, which usually happens
+/// if the user wasn't registered before and has a valid account id.
 pub async fn auto_login(
     shared: Arc<Shared>,
     pool: &sqlx::AnyPool,

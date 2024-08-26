@@ -2,6 +2,7 @@ use std::{
     fmt::Debug,
     net::IpAddr,
     num::NonZeroUsize,
+    path::Path,
     sync::{atomic::AtomicBool, Arc, RwLock},
     time::{Duration, SystemTime},
 };
@@ -1797,14 +1798,18 @@ impl Server {
     }
 }
 
-pub fn load_config() -> (Io, ConfigEngine, ConfigGame) {
+pub fn load_config(game_cfg_path: Option<&Path>) -> (Io, ConfigEngine, ConfigGame) {
     let io = Io::new(
         |rt| Arc::new(FileSystem::new(rt, "org", "", "DDNet", "DDNet-Accounts")),
         Arc::new(HttpClient::new()),
     );
 
     let config_engine = config_fs::load(&io.clone().into());
-    let config_game = game_config_fs::fs::load(&io.clone().into());
+    let config_game = if let Some(game_cfg_path) = game_cfg_path {
+        game_config_fs::fs::load_in(&io.clone().into(), game_cfg_path)
+    } else {
+        game_config_fs::fs::load(&io.clone().into())
+    };
 
     (io, config_engine, config_game)
 }
@@ -1814,6 +1819,7 @@ pub fn ddnet_server_main<const IS_INTERNAL_SERVER: bool>(
     cert_and_private_key: (x509_cert::Certificate, SigningKey),
     is_open: Arc<AtomicBool>,
     shared_info: Arc<ServerInfo>,
+    game_cfg_path: Option<&Path>,
 ) {
     let thread_pool = Arc::new(
         rayon::ThreadPoolBuilder::new()
@@ -1829,7 +1835,7 @@ pub fn ddnet_server_main<const IS_INTERNAL_SERVER: bool>(
             .unwrap(),
     );
 
-    let (io, config_engine, config_game) = load_config();
+    let (io, config_engine, config_game) = load_config(game_cfg_path);
 
     let mut server = Server::new(
         sys,

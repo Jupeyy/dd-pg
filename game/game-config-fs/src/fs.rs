@@ -1,3 +1,5 @@
+use std::path::Path;
+
 use base_io::io::{Io, IoFileSys};
 use game_config::config::ConfigGame;
 
@@ -16,15 +18,20 @@ pub fn save(config: &ConfigGame, io: &Io) {
     }
 }
 
-pub fn load(io: &IoFileSys) -> ConfigGame {
+pub fn load_in(io: &IoFileSys, path: &Path) -> ConfigGame {
     let fs = io.fs.clone();
+    let path = path.to_path_buf();
     let config_file = io
         .io_batcher
-        .spawn(async move { Ok(fs.read_file("cfg_game.json".as_ref()).await) });
+        .spawn(async move { Ok(fs.read_file(path.as_ref()).await) });
     let res = config_file.get_storage().unwrap();
     match res {
         Ok(file) => ConfigGame::from_json_string(String::from_utf8(file).unwrap().as_str())
             .unwrap_or_default(),
         Err(_) => ConfigGame::new(),
     }
+}
+
+pub fn load(io: &IoFileSys) -> ConfigGame {
+    load_in(io, "cfg_game.json".as_ref())
 }

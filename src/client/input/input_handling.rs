@@ -336,7 +336,7 @@ impl InputHandling {
         local_player.show_scoreboard = next_show_scoreboard;
         local_player.show_chat_all = next_show_chat_all;
         local_player.zoom = zoom_diff
-            .map(|diff| local_player.zoom - diff as f32)
+            .map(|diff| (local_player.zoom - diff as f32).clamp(0.01, 1024.0))
             .unwrap_or(1.0);
     }
 

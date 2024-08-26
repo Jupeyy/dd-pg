@@ -88,7 +88,7 @@ pub fn render(ui: &mut egui::Ui, pipe: &mut UiRenderPipe<UserData>, main_frame_o
                         match pipe.user_data.game {
                             Some(GameRenderInfo::Match { standings }) => match standings {
                                 MatchStandings::Solo { leading_players } => {
-                                    todo!();
+                                    // TODO:
                                 }
                                 MatchStandings::Team {
                                     score_red,

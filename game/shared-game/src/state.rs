@@ -924,9 +924,9 @@ pub mod state {
                                         .characters
                                         .get(&hooked_char_id)
                                         .or(hooked_char);
-                                    hooked_char.zip(pred_hooked_char).and_then(
+                                    hooked_char.zip(pred_hooked_char).map(
                                         |(character, pred_character)| {
-                                            character::lerp_core_hook_pos(
+                                            character::lerp_core_pos(
                                                 character,
                                                 pred_character,
                                                 intra_tick_ratio,

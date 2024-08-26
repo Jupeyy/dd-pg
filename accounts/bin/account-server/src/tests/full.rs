@@ -82,7 +82,7 @@ async fn account_full_process() {
         assert!(user_id.account_id.is_some());
 
         // What the game server usually does is to provide a mechanism for the client
-        // to auto login the user, this automatically registers new users.
+        // to auto login the user, this automatically registers new users (if it has a valid account id).
         // And in case of an "upgrade" so that a user previously had no account id but
         // uses the same public key again, it will move the points of this public key
         // to that account.
@@ -94,7 +94,7 @@ async fn account_full_process() {
         // remove this session
         logout(&*client).await?;
 
-        // signing should fali now
+        // signing should fail now
         assert!(matches!(
             account_client::sign::sign(&*client).await,
             Err(SignResult::FsLikeError(_))
@@ -112,7 +112,7 @@ async fn account_full_process() {
         let account_token_b64 = account_token.lock().clone();
         account_client::delete::delete_sessions(account_token_b64, &*client).await?;
 
-        // signing should fali now
+        // signing should fail now
         assert!(matches!(
             account_client::sign::sign(&*client).await,
             Err(SignResult::FsLikeError(_))
@@ -130,7 +130,7 @@ async fn account_full_process() {
         let account_token_b64 = account_token.lock().clone();
         account_client::delete::delete(account_token_b64, &*client).await?;
 
-        // signing should fali now
+        // signing should fail now
         assert!(matches!(
             account_client::sign::sign(&*client).await,
             Err(SignResult::FsLikeError(_))

@@ -40,6 +40,7 @@ fn main_impl(app: NativeApp) {
                 (cert, private_key),
                 server_is_open_clone,
                 shared_info_thread,
+                None,
             )
         })
         .unwrap();

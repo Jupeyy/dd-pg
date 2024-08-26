@@ -1,4 +1,4 @@
-use std::{fmt::Debug, ops::IndexMut};
+use std::{fmt::Debug, ops::IndexMut, time::Duration};
 
 use fixed::traits::{FromFixed, ToFixed};
 use graphics::handles::{
@@ -527,12 +527,12 @@ impl RenderTools {
         }
 
         let max_point_time = &points[points.len() - 1].time;
-        if !max_point_time.is_zero()
-        // TODO: remove this check when implementing a IO check for maps(in this case broken envelopes)
-        {
+        let min_point_time = &points[0].time;
+        if !max_point_time.is_zero() {
+            let time_diff = max_point_time.saturating_sub(*min_point_time);
             time_nanos = time::Duration::nanoseconds(
-                (time_nanos.whole_nanoseconds() % max_point_time.as_nanos() as i128) as i64,
-            );
+                (time_nanos.whole_nanoseconds() % time_diff.as_nanos() as i128) as i64,
+            ) + *min_point_time;
         } else {
             time_nanos = time::Duration::nanoseconds(0);
         }
@@ -543,7 +543,7 @@ impl RenderTools {
         let point1 = &points[idx_prev];
         let point2 = &points[idx];
 
-        let delta = point2.time - point1.time;
+        let delta = (point2.time - point1.time).clamp(Duration::from_nanos(100), Duration::MAX);
         let mut a: ffixed = (((lffixed::from_num(time_nanos.whole_nanoseconds()))
             - lffixed::from_num(point1.time.as_nanos()))
             / lffixed::from_num(delta.as_nanos()))
