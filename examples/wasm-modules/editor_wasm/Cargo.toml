@@ -1,0 +1,16 @@
+[package]
+name = "editor-wasm"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-log = { path = "../../../lib/base-log" }
+config = { path = "../../../lib/config" }
+ui-base = { path = "../../../lib/ui-base" }
+api = { path = "../../../lib/api" }
+api-macros = { path = "../../../lib/api-macros" }
+api-editor = { path = "../../../game/api-editor" }
+editor = { path = "../../../game/editor" }
+
+[lib]
+crate-type = ["cdylib"]

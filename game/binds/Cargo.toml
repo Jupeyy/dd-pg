@@ -1,0 +1,13 @@
+[package]
+name = "binds"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+game-interface = { path = "../game-interface" }
+command-parser = { path = "../command-parser" }
+
+native = { path = "../../lib/native" }
+
+serde_json = "1.0.125"
+anyhow = { version = "1.0.86", features = ["backtrace"] }

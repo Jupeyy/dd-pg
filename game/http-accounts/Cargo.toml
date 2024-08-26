@@ -1,0 +1,12 @@
+[package]
+name = "http-accounts"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io-traits = { path = "../../lib/base-io-traits" }
+account-client = { path = "../../accounts/lib/account-client" }
+client-http-fs = { path = "../../accounts/lib/client-http-fs" }
+async-trait = "0.1.81"
+url = { version = "2.5.2", features = ["serde"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }

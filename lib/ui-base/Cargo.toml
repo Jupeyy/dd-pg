@@ -1,0 +1,15 @@
+[package]
+name = "ui-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io = { path = "../base-io" }
+math = { path = "../math" }
+graphics = { path = "../graphics" }
+graphics-types = { path = "../graphics-types" }
+hiarc = { path = "../hiarc", features = ["enable_egui"] }
+egui = { git = "https://github.com/emilk/egui", rev = "9a1e358a144b5d2af9d03a80257c34883f57cf0b", features = ["serde"] }
+egui_extras = { git = "https://github.com/emilk/egui", rev = "9a1e358a144b5d2af9d03a80257c34883f57cf0b" }
+serde = { version = "1.0.208", features = ["derive"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }

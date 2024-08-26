@@ -1,0 +1,19 @@
+[package]
+name = "account-client"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+accounts-shared = { path = "../accounts-shared" }
+
+async-trait = "0.1.81"
+email_address = { version = "0.2.9", features = ["serde"] }
+serde_json = "1.0.125"
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+thiserror = "1.0.63"
+serde = { version = "1.0.208", features = ["derive"] }
+x509-parser = { version = "0.16.0", default-features = false }
+x509-cert = { version = "0.2.5" }
+
+[dev-dependencies]
+pollster = "0.3.0"

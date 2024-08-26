@@ -1,0 +1,28 @@
+[package]
+name = "client-map"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+ui-base = { path = "../../lib/ui-base" }
+base = { path = "../../lib/base" }
+base-io = { path = "../../lib/base-io" }
+config = { path = "../../lib/config" }
+graphics = { path = "../../lib/graphics" }
+graphics-backend = { path = "../../lib/graphics-backend" }
+game-database = { path = "../../lib/game-database" }
+sound = { path = "../../lib/sound" }
+shared-base = { path = "../shared-base" }
+game-interface = { path = "../game-interface" }
+map = { path = "../map" }
+client-render-game = { path = "../client-render-game" }
+shared = { path = "../shared", default-features = false }
+
+rayon = "1.10.0"
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+url = "2.5.2"
+
+[features]
+legacy = ["shared/legacy"]
+
+default = ["legacy"]

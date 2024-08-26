@@ -1,0 +1,10 @@
+[package]
+name = "egui-timeline"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+map = { path = "../map" }
+egui = { git = "https://github.com/emilk/egui", rev = "9a1e358a144b5d2af9d03a80257c34883f57cf0b", features = ["serde"] }
+egui_extras = { git = "https://github.com/emilk/egui", rev = "9a1e358a144b5d2af9d03a80257c34883f57cf0b" }

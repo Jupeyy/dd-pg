@@ -1,0 +1,8 @@
+[package]
+name = "image"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+png = "0.17.13"

@@ -1,0 +1,17 @@
+[package]
+name = "client-accounts"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io = { path = "../../lib/base-io" }
+
+client-ui = { path = "../client-ui" }
+http-accounts = { path = "../http-accounts" }
+
+accounts-shared = { path = "../../accounts/lib/accounts-shared" }
+client-http-fs = { path = "../../accounts/lib/client-http-fs" }
+async-trait = "0.1.81"
+url = { version = "2.5.2", features = ["serde"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+email_address = { version = "0.2.9", features = ["serde"] }
