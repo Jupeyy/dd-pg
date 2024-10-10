@@ -1,0 +1,13 @@
+[package]
+name = "wasm-logic-http"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+base-io = { path = "../base-io" }
+base-io-traits = { path = "../base-io-traits" }
+wasm-runtime-types = { path = "../wasm-runtime-types" }
+wasmer = { version = "4.3.5", default-features = false, features = ["sys", "cranelift"] }
+url = "2.5.2"
+bytes = { version = "1.7.1", features = ["serde"] }

@@ -1,0 +1,22 @@
+[package]
+name = "client-accounts"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-io = { path = "../../lib/base-io" }
+steam = { path = "../../lib/steam" }
+
+client-ui = { path = "../client-ui" }
+http-accounts = { path = "../http-accounts" }
+
+ddnet-accounts-shared = { version = "0.1.0" }
+ddnet-account-client-http-fs = { version = "0.1.0" }
+async-trait = "0.1.81"
+url = { version = "2.5.2", features = ["serde"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+email_address = { version = "0.2.9", features = ["serde"] }
+tokio = { version = "1.39.3", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+log = "0.4.22"
+chrono = { version = "0.4.38" }

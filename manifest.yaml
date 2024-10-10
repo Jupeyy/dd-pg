@@ -1,0 +1,15 @@
+android:
+    manifest:
+        uses_permission:
+            - name: "android.permission.ACCESS_WIFI_STATE"
+            - name: "android.permission.CHANGE_WIFI_MULTICAST_STATE"
+            - name: "android.permission.ACCESS_NETWORK_STATE"
+            - name: "android.permission.INTERNET"
+        uses_feature:
+            - name: "android.hardware.screen.landscape"
+        application:
+            activities:
+                - 
+                    config_changes: "orientation|screenSize|screenLayout|keyboardHidden"
+                    orientation: "landscape"
+            theme: "@android:style/Theme.NoTitleBar.Fullscreen"

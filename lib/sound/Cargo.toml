@@ -1,0 +1,11 @@
+[package]
+name = "sound"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../math" }
+hiarc = { path = "../hiarc", features = ["derive"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+serde = { version = "1.0.208", features = ["derive"] }
+thiserror = "1.0.63"

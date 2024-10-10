@@ -1,0 +1,12 @@
+[package]
+name = "wasm-logic-sound"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+sound = { path = "../sound" }
+wasm-runtime-types = { path = "../wasm-runtime-types" }
+hiarc = { path = "../hiarc", features = ["derive"] }
+hashlink = { git = "https://github.com/Jupeyy/hashlink/", branch = "pr-skipped-it", features = ["serde", "serde_impl"] }
+wasmer = { version = "4.3.5", default-features = false, features = ["sys", "cranelift"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }

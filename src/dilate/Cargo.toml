@@ -1,0 +1,13 @@
+[package]
+name = "dilate"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+graphics = { path = "../../lib/graphics" }
+image = { path = "../../lib/image" }
+
+tokio = { version = "1.39.3", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+clap = { version = "4.5.16", features = ["derive"] }
+rayon = "1.10.0"
+oxipng = { version = "9.1", features = ["parallel"], default-features = false }

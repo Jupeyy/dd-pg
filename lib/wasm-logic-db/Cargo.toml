@@ -1,0 +1,11 @@
+[package]
+name = "wasm-logic-db"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io = { path = "../base-io" }
+wasm-runtime-types = { path = "../wasm-runtime-types" }
+game-database = { path = "../game-database" }
+
+wasmer = { version = "4.3.5", default-features = false, features = ["sys", "cranelift"] }

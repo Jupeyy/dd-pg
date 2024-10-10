@@ -1,0 +1,15 @@
+[package]
+name = "game-database"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+game-database-macros = { path = "../game-database-macros" }
+
+hiarc = { path = "../../lib/hiarc", features = ["derive"] }
+
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+serde = { version = "1.0.208", features = ["derive"] }
+async-trait = "0.1.81"
+chrono = { version = "0.4.38", default-features = false, features = ["serde"] }
+futures = "0.3.30"

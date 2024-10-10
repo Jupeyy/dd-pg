@@ -1,0 +1,12 @@
+[package]
+name = "sql"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io = { path = "../base-io" }
+game-database = { path = "../game-database" }
+
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+# https://github.com/launchbadge/sqlx/issues/2636
+sqlx = { version = "=0.6.3", features = ["mysql", "sqlite", "any", "runtime-tokio-rustls", "chrono"] }

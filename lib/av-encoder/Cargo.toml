@@ -1,0 +1,28 @@
+[package]
+name = "av-encoder"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../base" }
+pool = { path = "../pool", features = ["enable_hiarc"] }
+sound = { path = "../sound" }
+sound-backend = { path = "../sound-backend" }
+graphics-backend = { path = "../graphics-backend" }
+graphics-backend-traits = { path = "../graphics-backend-traits" }
+hiarc = { path = "../hiarc", features = ["derive", "enable_tokio"] }
+
+#matroska = { git = "https://github.com/rust-av/matroska" }
+#rav1e = { version = "0.7.1", default-features = false, features = ["threading"] }
+#av-data = "0.4.2"
+#av-format = "0.7"
+
+log = "0.4.22"
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+tokio = { version = "1.39.3", features = ["rt-multi-thread", "sync", "fs", "time", "macros"] }
+rayon = "1.10.0"
+
+ffmpeg-next = { version = "7.0.4", features = ["build"], optional = true }
+
+[features]
+ffmpeg = ["ffmpeg-next"]

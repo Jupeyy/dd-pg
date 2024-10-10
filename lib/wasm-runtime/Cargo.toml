@@ -1,0 +1,12 @@
+[package]
+name = "wasm-runtime"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+wasm-runtime-types = { path = "../wasm-runtime-types" }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+wasmer = { version = "4.3.5", default-features = false, features = ["sys", "cranelift"] }
+bincode = "2.0.0-rc.3"
+arrayvec = "0.7.6"
+serde = "1.0.208"

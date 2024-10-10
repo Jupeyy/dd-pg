@@ -1,0 +1,13 @@
+[package]
+name = "http-accounts"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io-traits = { path = "../../lib/base-io-traits" }
+async-trait = "0.1.81"
+url = { version = "2.5.2", features = ["serde"] }
+anyhow = { version = "1.0.86", features = ["backtrace"] }
+
+ddnet-account-client = { version = "0.1.0" }
+ddnet-account-client-http-fs = { version = "0.1.0" }
