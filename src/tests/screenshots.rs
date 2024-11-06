@@ -107,7 +107,7 @@ fn create_screenshots() {
 
 #[test]
 fn benchmark_screenshots() {
-    let (graphics, _, creator, mut containers, _, _) = prepare(false);
+    let (graphics, _, creator, mut containers, _, _) = prepare(true);
     let b = Benchmark::new(true);
     test_ingame(
         &graphics,

@@ -1,4 +1,8 @@
-use std::{cell::RefCell, rc::Rc, sync::Arc};
+use std::{
+    cell::RefCell,
+    rc::Rc,
+    sync::{atomic::AtomicUsize, Arc},
+};
 
 use ash::vk;
 use hiarc::Hiarc;
@@ -193,6 +197,8 @@ pub struct CommandPool {
     pub device: Arc<LogicalDevice>,
 }
 
+static T: AtomicUsize = AtomicUsize::new(0);
+
 impl CommandPool {
     fn get_command_buffers(
         device: &Arc<LogicalDevice>,
@@ -204,6 +210,12 @@ impl CommandPool {
         alloc_info.command_pool = command_pool;
         alloc_info.level = level;
         alloc_info.command_buffer_count = count as u32;
+
+        T.fetch_add(count, std::sync::atomic::Ordering::SeqCst);
+        dbg!(
+            "current allocation count",
+            T.load(std::sync::atomic::Ordering::SeqCst)
+        );
 
         Ok(unsafe { device.device.allocate_command_buffers(&alloc_info) }?)
     }

@@ -3245,7 +3245,8 @@ impl DriverBackendInterface for VulkanBackend {
             {
                 current_command_group.cmds.push(buffer);
 
-                if can_start_thread {
+                // if can_start_thread
+                {
                     let canvas_index = current_command_group.canvas_index;
                     let render_pass_index = current_command_group.render_pass_index;
                     let render_pass = current_command_group.render_pass;
