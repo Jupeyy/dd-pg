@@ -1,0 +1,81 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {
+		"lldb.launch.expressions": "native",
+		"lldb.launch.initCommands": ["target stop-hook add --one-liner \"command script import ${workspaceFolder}/other/vscode/lldbinit.py\""],
+		"editor.defaultFormatter": "rust-lang.rust-analyzer",
+		"editor.formatOnSave": true,
+	},
+	"extensions": {
+		"recommendations": [
+			"vadimcn.vscode-lldb",
+			"rust-lang.rust-analyzer"
+		]
+	},
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+			{
+				"type": "cargo",
+				"label": "Cargo: build client",
+				"command": "build",
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				},
+				"args": [
+					"--bin=ddnet-playground",
+					"--package=ddnet-playground",
+					"--manifest-path=${workspaceFolder}/Cargo.toml"
+				],
+				"problemMatcher": [],
+				"detail": "Build client targets"
+			},
+			{
+				"type": "cargo",
+				"label": "Cargo: build server",
+				"command": "build",
+				"group": {
+					"kind": "build",
+					"isDefault": true
+				},
+				"args": [
+					"-p=server-bin",
+					"--manifest-path=${workspaceFolder}/Cargo.toml"
+				],
+				"problemMatcher": [],
+				"detail": "Build server targets"
+			}
+		]
+	},
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"type": "lldb",
+				"request": "launch",
+				"name": "Debug executable 'ddnet-playground'",
+				"args": [],
+				"program": "${workspaceFolder}/target/debug/ddnet-playground",
+				"cwd": "${workspaceFolder}",
+				"preLaunchTask": "Cargo: build client",
+				"sourceLanguages": ["rust"]
+			},
+			{
+				"type": "lldb",
+				"request": "launch",
+				"name": "Debug executable 'ddnet-server'",
+				"args": [],
+				"program": "${workspaceFolder}/target/debug/server-bin",
+				"cwd": "${workspaceFolder}",
+				"preLaunchTask": "Cargo: build server",
+				"sourceLanguages": ["rust"]
+			}
+		],
+		"compounds": []
+	}
+}

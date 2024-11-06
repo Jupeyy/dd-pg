@@ -1,0 +1,10 @@
+[package]
+name = "assets-base"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+hiarc = { path = "../../lib/hiarc", features = ["derive"] }
+
+serde = { version = "1.0.210", features = ["derive"] }

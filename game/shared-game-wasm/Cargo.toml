@@ -1,0 +1,23 @@
+[package]
+name = "shared-game-wasm"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+math = { path = "../../lib/math" }
+base = { path = "../../lib/base" }
+base-io-traits = { path = "../../lib/base-io-traits" }
+base-io = { path = "../../lib/base-io" }
+cache = { path = "../../lib/cache" }
+game-database = { path = "../../lib/game-database" }
+wasm-runtime = { path = "../../lib/wasm-runtime" }
+api-wasm-macros = { path = "../../lib/api-wasm-macros" }
+wasm-logic-db = { path = "../../lib/wasm-logic-db" }
+pool = { path = "../../lib/pool" }
+
+shared-game = { path = "../shared-game" }
+game-interface = { path = "../game-interface" }
+
+#ddnet = { git = "https://gitlab.com/Jupstar/twgame", rev = "4e5bd44981a2b27d9b46d0db0442f84e81c90cb8" }
+wasmer = { version = "4.4.0", default-features = false, features = ["sys", "cranelift"] }
+anyhow = { version = "1.0.89", features = ["backtrace"] }

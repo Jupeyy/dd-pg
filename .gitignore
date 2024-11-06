@@ -1,0 +1,9 @@
+.vscode/
+.cache/
+target/
+artifacts/
+*.sqlite
+#  artifact for memory analysis feature
+/trace.txt
+/flamegraph.svg
+/perf.data*

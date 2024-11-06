@@ -1,0 +1,169 @@
+[
+    {
+        "input": "prim.vert.wgsl",
+        "output": "shader/vulkan/prim.vert.spv"
+    },
+    {
+        "input": "prim.frag.wgsl",
+        "output": "shader/vulkan/prim.frag.spv"
+    },
+    {
+        "input": "prim.frag.wgsl",
+        "output": "shader/vulkan/prim_textured.frag.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    },
+    {
+        "input": "blur.frag.wgsl",
+        "output": "shader/vulkan/blur.frag.spv"
+    },
+    {
+        "input": "prim3d.vert.wgsl",
+        "output": "shader/vulkan/prim3d.vert.spv"
+    },
+    {
+        "input": "prim3d.frag.wgsl",
+        "output": "shader/vulkan/prim3d.frag.spv"
+    },
+    {
+        "input": "prim3d.vert.wgsl",
+        "output": "shader/vulkan/prim3d_textured.vert.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    },
+    {
+        "input": "prim3d.frag.wgsl",
+        "output": "shader/vulkan/prim3d_textured.frag.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    },
+    {
+        "input": "primex.vert.wgsl",
+        "output": "shader/vulkan/primex.vert.spv"
+    },
+    {
+        "input": "primex.frag.wgsl",
+        "output": "shader/vulkan/primex.frag.spv"
+    },
+    {
+        "input": "primex.vert.wgsl",
+        "output": "shader/vulkan/primex_tex.vert.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    },
+    {
+        "input": "primex.frag.wgsl",
+        "output": "shader/vulkan/primex_tex.frag.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    },
+    {
+        "input": "primex.vert.wgsl",
+        "output": "shader/vulkan/primex_rotationless.vert.spv",
+        "defines": {
+            "TW_ROTATIONLESS": true
+        }
+    },
+    {
+        "input": "primex.frag.wgsl",
+        "output": "shader/vulkan/primex_rotationless.frag.spv",
+        "defines": {
+            "TW_ROTATIONLESS": true
+        }
+    },
+    {
+        "input": "primex.vert.wgsl",
+        "output": "shader/vulkan/primex_tex_rotationless.vert.spv",
+        "defines": {
+            "TW_TEXTURED": true,
+            "TW_ROTATIONLESS": true
+        }
+    },
+    {
+        "input": "primex.frag.wgsl",
+        "output": "shader/vulkan/primex_tex_rotationless.frag.spv",
+        "defines": {
+            "TW_TEXTURED": true,
+            "TW_ROTATIONLESS": true
+        }
+    },
+    {
+        "input": "quad.vert.wgsl",
+        "output": "shader/vulkan/quad.vert.spv"
+    },
+    {
+        "input": "quad.frag.wgsl",
+        "output": "shader/vulkan/quad.frag.spv"
+    },
+    {
+        "input": "quad.vert.wgsl",
+        "output": "shader/vulkan/quad_textured.vert.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    },
+    {
+        "input": "quad.frag.wgsl",
+        "output": "shader/vulkan/quad_textured.frag.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    },
+    {
+        "input": "spritemulti.vert.wgsl",
+        "output": "shader/vulkan/spritemulti.vert.spv"
+    },
+    {
+        "input": "spritemulti.frag.wgsl",
+        "output": "shader/vulkan/spritemulti.frag.spv"
+    },
+    {
+        "input": "tile.vert.wgsl",
+        "output": "shader/vulkan/tile.vert.spv"
+    },
+    {
+        "input": "tile.frag.wgsl",
+        "output": "shader/vulkan/tile.frag.spv"
+    },
+    {
+        "input": "tile.vert.wgsl",
+        "output": "shader/vulkan/tile_textured.vert.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    },
+    {
+        "input": "tile.frag.wgsl",
+        "output": "shader/vulkan/tile_textured.frag.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    },
+    {
+        "input": "tile_border.vert.wgsl",
+        "output": "shader/vulkan/tile_border.vert.spv"
+    },
+    {
+        "input": "tile_border.frag.wgsl",
+        "output": "shader/vulkan/tile_border.frag.spv"
+    },
+    {
+        "input": "tile_border.vert.wgsl",
+        "output": "shader/vulkan/tile_border_textured.vert.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    },
+    {
+        "input": "tile_border.frag.wgsl",
+        "output": "shader/vulkan/tile_border_textured.frag.spv",
+        "defines": {
+            "TW_TEXTURED": true
+        }
+    }
+]

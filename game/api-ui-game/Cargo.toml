@@ -1,0 +1,9 @@
+[package]
+name = "api-ui-game"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+api = { path = "../../lib/api" }
+
+client-containers = { path = "../../game/client-containers" }

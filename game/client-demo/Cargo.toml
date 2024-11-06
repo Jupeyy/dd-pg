@@ -1,0 +1,41 @@
+[package]
+name = "client-demo"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+av-encoder = { path = "../../lib/av-encoder" }
+base-io = { path = "../../lib/base-io" }
+base = { path = "../../lib/base" }
+math = { path = "../../lib/math" }
+config = { path = "../../lib/config" }
+graphics = { path = "../../lib/graphics" }
+graphics-types = { path = "../../lib/graphics-types" }
+graphics-backend = { path = "../../lib/graphics-backend" }
+pool = { path = "../../lib/pool" }
+hiarc = { path = "../../lib/hiarc" }
+ui-base = { path = "../../lib/ui-base" }
+sound = { path = "../../lib/sound" }
+sound-backend = { path = "../../lib/sound-backend" }
+bin-patch = { path = "../../lib/bin-patch" }
+
+demo = { path = "../demo", features = ["recorder"] }
+client-map = { path = "../client-map", default-features = false }
+client-ui = { path = "../client-ui" }
+client-render = { path = "../client-render" }
+shared-base = { path = "../shared-base" }
+game-interface = { path = "../game-interface" }
+client-render-game = { path = "../client-render-game" }
+client-render-base = { path = "../client-render-base" }
+game-config = { path = "../game-config" }
+
+serde = { version = "1.0.210", features = ["derive"] }
+anyhow = { version = "1.0.89", features = ["backtrace"] }
+rayon = "1.10.0"
+egui = { version = "0.29.1", default-features = false, features = ["serde"] }
+
+[features]
+legacy = ["client-map/legacy"]
+ffmpeg = ["av-encoder/ffmpeg"]
+
+default = ["legacy"]

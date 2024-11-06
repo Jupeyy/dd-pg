@@ -1,0 +1,29 @@
+[package]
+name = "client-map"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base = { path = "../../lib/base" }
+base-io = { path = "../../lib/base-io" }
+config = { path = "../../lib/config" }
+graphics = { path = "../../lib/graphics" }
+graphics-backend = { path = "../../lib/graphics-backend" }
+game-database = { path = "../../lib/game-database" }
+sound = { path = "../../lib/sound" }
+shared-base = { path = "../shared-base" }
+game-interface = { path = "../game-interface" }
+map = { path = "../map" }
+client-render-game = { path = "../client-render-game" }
+shared = { path = "../shared", default-features = false }
+shared-game-wasm = { path = "../shared-game-wasm" }
+
+rayon = "1.10.0"
+anyhow = { version = "1.0.89", features = ["backtrace"] }
+wasmparser = "0.219.0"
+log = "0.4.22"
+
+[features]
+legacy = ["shared/legacy"]
+
+default = ["legacy"]

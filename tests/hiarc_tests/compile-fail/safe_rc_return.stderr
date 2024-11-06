@@ -1,0 +1,7 @@
+error[E0515]: cannot return reference to temporary value
+  --> tests/hiarc_tests/compile-fail/safe_rc_return.rs:13:5
+   |
+13 |     #[hiarc_safer_rc_refcell]
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ returns a reference to data owned by the current function
+   |
+   = note: this error originates in the attribute macro `hiarc_safer_rc_refcell` (in Nightly builds, run with -Z macro-backtrace for more info)

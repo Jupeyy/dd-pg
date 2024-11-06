@@ -1,0 +1,55 @@
+error[E0391]: cycle detected when elaborating drops for `main::<impl at $DIR/tests/hiarc_tests/compile-fail/macro_fail.rs:4:5: 4:13>::HI_VAL`
+  --> tests/hiarc_tests/compile-fail/macro_fail.rs:4:5
+   |
+4  |     #[hiarc]
+   |     ^^^^^^^^
+   |
+note: ...which requires const-evaluating + checking `hiarc::HiBox::<T>::HI_VAL`...
+  --> lib/hiarc/src/lib.rs
+   |
+   |     pub const HI_VAL: u64 = T::HI_VAL;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+note: ...which requires const-evaluating + checking `hiarc::HiBox::<T>::HI_VAL`...
+  --> lib/hiarc/src/lib.rs
+   |
+   |     pub const HI_VAL: u64 = T::HI_VAL;
+   |                             ^^^^^^^^^
+note: ...which requires const-evaluating + checking `main::<impl at $DIR/tests/hiarc_tests/compile-fail/macro_fail.rs:10:5: 10:13>::HI_VAL`...
+  --> tests/hiarc_tests/compile-fail/macro_fail.rs:10:5
+   |
+10 |     #[hiarc]
+   |     ^^^^^^^^
+note: ...which requires caching mir of `main::<impl at $DIR/tests/hiarc_tests/compile-fail/macro_fail.rs:10:5: 10:13>::HI_VAL` for CTFE...
+  --> tests/hiarc_tests/compile-fail/macro_fail.rs:10:5
+   |
+10 |     #[hiarc]
+   |     ^^^^^^^^
+note: ...which requires elaborating drops for `main::<impl at $DIR/tests/hiarc_tests/compile-fail/macro_fail.rs:10:5: 10:13>::HI_VAL`...
+  --> tests/hiarc_tests/compile-fail/macro_fail.rs:10:5
+   |
+10 |     #[hiarc]
+   |     ^^^^^^^^
+note: ...which requires const-evaluating + checking `hiarc::HiBox::<T>::HI_VAL`...
+  --> lib/hiarc/src/lib.rs
+   |
+   |     pub const HI_VAL: u64 = T::HI_VAL;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+note: ...which requires const-evaluating + checking `hiarc::HiBox::<T>::HI_VAL`...
+  --> lib/hiarc/src/lib.rs
+   |
+   |     pub const HI_VAL: u64 = T::HI_VAL;
+   |                             ^^^^^^^^^
+note: ...which requires const-evaluating + checking `main::<impl at $DIR/tests/hiarc_tests/compile-fail/macro_fail.rs:4:5: 4:13>::HI_VAL`...
+  --> tests/hiarc_tests/compile-fail/macro_fail.rs:4:5
+   |
+4  |     #[hiarc]
+   |     ^^^^^^^^
+note: ...which requires caching mir of `main::<impl at $DIR/tests/hiarc_tests/compile-fail/macro_fail.rs:4:5: 4:13>::HI_VAL` for CTFE...
+  --> tests/hiarc_tests/compile-fail/macro_fail.rs:4:5
+   |
+4  |     #[hiarc]
+   |     ^^^^^^^^
+   = note: ...which again requires elaborating drops for `main::<impl at $DIR/tests/hiarc_tests/compile-fail/macro_fail.rs:4:5: 4:13>::HI_VAL`, completing the cycle
+   = note: cycle used when running analysis passes on this crate
+   = note: see https://rustc-dev-guide.rust-lang.org/overview.html#queries and https://rustc-dev-guide.rust-lang.org/query.html for more information
+   = note: this error originates in the attribute macro `hiarc` (in Nightly builds, run with -Z macro-backtrace for more info)

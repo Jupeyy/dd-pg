@@ -1,0 +1,8 @@
+[package]
+name = "game-config-fs"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base-io = { path = "../../lib/base-io" }
+game-config = { path = "../game-config" }
